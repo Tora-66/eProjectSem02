@@ -117,7 +117,8 @@ CREATE TABLE `tbOrder_Master`(
 DROP TABLE IF EXISTS `tbNews`;
 CREATE TABLE `tbNews`(
     `NewsID` int NOT NULL AUTO_INCREMENT,
-    `News` text NOT NULL,
+    `Title` varchar(100) NOT NULL,
+    `Content` text NOT NULL,
     `Image` varchar(100) NOT NULL,
     `NewsDate` datetime NOT NULL,
     PRIMARY KEY (NewsID)
@@ -168,8 +169,55 @@ ALTER TABLE `tbFeedback`
 ADD FOREIGN KEY (UserID) REFERENCES tbUser_Account(UserID),
 ADD FOREIGN KEY (GuestID) REFERENCES tbGuest(GuestID);
 
-INSERT INTO `tbType`(TypeID, TypeName, Desc) VALUES 
+INSERT INTO `tbType`(`TypeID`, `TypeName`, `Desc`) VALUES 
 ('001SNE', 'Sneaker', 'Sneaker shoes'),
 ('002BOO', 'Boots', 'Boots shoes'),
 ('003SAN', 'Sandals', 'Sandals'),
 ('004SLI', 'Slippers', 'Slippers');
+
+INSERT INTO `tbAdmin` VALUES ('admin', '123');
+INSERT INTO `tbUser_Account` VALUES ('user001', 'User001', 'User Khong Mot', 'User001@user.com', '9879696906');
+
+INSERT INTO `tbBrand` VALUES
+('001NIK', 'Nike', 'img/brand_nike.png', ''),
+('002ADI', 'Adidas', 'img/brand_adidas.png', ''),
+('003TIM', 'Timberland', 'img/brand_Timberland.png', '');
+
+INSERT INTO `tbType`VALUES 
+('001SNE', 'Sneaker', 'Sneaker shoes'),
+('002BOO', 'Boots', 'Boots shoes'),
+('003SAN', 'Sandals', 'Sandals'),
+('004SLI', 'Slippers', 'Slippers');
+
+INSERT INTO `tbProduct` VALUES 	
+('PP01', 'Xiaomi', '555', 'img/thumbnail_1.jpg', 'img/image_1.jpg', '001NIK', '001SNE'),
+('PP02', 'Nike Javascript Ultra', '199', 'img/thumbnail_2.jpg', 'img/image_2.jpg', '001NIK', '001SNE'),
+('PP03', 'Adidas Ultra Pro Max', '80', 'img/thumbnail_product-4.jpg', 'img/image_product-4.jpg', '002ADI', '001SNE'),
+('PP04', 'Timberland Boots New Earth', '96', 'img/thumbnail_timberland-1.jpg', 'img/image_timberland-1.jpg', '003TIM', '002BOO');
+
+INSERT INTO `tbInventory` VALUES
+('PP0138', 'PP01', '38', 10),
+('PP0139', 'PP01', '39', 10),
+('PP0140', 'PP01', '40', 10),
+('PP0141', 'PP01', '41', 10),
+('PP0142', 'PP01', '42', 10),
+('PP0238', 'PP02', '38', 10),
+('PP0239', 'PP02', '39', 10),
+('PP0240', 'PP02', '40', 10),
+('PP0241', 'PP02', '41', 10),
+('PP0242', 'PP02', '42', 10),
+('PP0338', 'PP03', '38', 10),
+('PP0339', 'PP03', '39', 10),
+('PP0340', 'PP03', '40', 10),
+('PP0341', 'PP03', '41', 10),
+('PP0342', 'PP03', '42', 10),
+('PP0438', 'PP04', '38', 10),
+('PP0439', 'PP04', '39', 10),
+('PP0440', 'PP04', '40', 10),
+('PP0441', 'PP04', '41', 10),
+('PP0442', 'PP04', '42', 10);
+
+INSERT INTO `tbPayment` VALUES 
+('Cash', 'Cash payment method'),
+('VISA', 'VISA payment method'),
+('MOMO', 'MOMO wallet');
