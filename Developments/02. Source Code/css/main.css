@@ -1,0 +1,134 @@
+
+/* external css: flickity.css */
+
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+html { overflow-y: scroll; }
+
+.carousel {
+  background: rgb(255, 255, 255);
+  height: 35rem;
+}
+
+
+.carousel-cell {
+  height: 100%;
+  margin-right: 20px;
+}
+
+.carousel-cell img {
+  display: block;
+  height: 100%;
+}
+
+
+
+.carousel-section {
+  margin-top: 4rem;
+}
+
+.carousel-item {
+  background-color: rgb(20, 20, 20);
+}
+
+/* .carousel-item img {
+  height: 35rem;
+  margin: 0 auto;
+  width: 75%;
+} */
+
+.carousel-cell .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 10rem;
+  max-width: 100%;
+  width: 100%;
+  left: 0;
+
+}
+
+
+/* Navigation bar */
+.navbar .search{
+  width: 15rem;
+  border-top: solid #727272 thin;
+  border-right: solid #727272 thin;
+  border-bottom: solid #727272 thin;
+  border-left: none;
+}
+
+.navbar .nav-link{
+  color: #343434;
+  font-weight: bold;
+  margin: auto;
+}
+
+.navbar .btn-search {
+  width: 2rem;
+  background-color: white;
+  border-top: solid #727272 thin;
+  border-left: solid #727272 thin;
+  border-bottom: solid #727272 thin;
+  border-right: none;
+}
+
+.navbar .avatar{
+  width: 100%;
+  border-radius: 50%;
+  height: 50px;
+}
+
+
+
+
+/* Card */
+.card {
+  border-radius: 0;
+  border: none;
+}
+
+.card:hover{
+  /* border: solid #343434 thin; */
+  border: solid #727272 thin;
+  box-shadow: 0.5rem 1rem;
+}
+
+.card img {
+  border-radius: 0;
+  height: 15rem;
+}
+
+.card .card-body{
+  text-align: center;;
+}
+
+.card .card-title {
+  font-weight:700;
+}
+
+
+/* Table Form */
+.product-card {
+  display: flex;
+}
+
+.product-card-item {
+  margin-right: 0.5rem;
+}
+
+.product-card-img {
+  width: 10rem;
+}
+
+.quantity {
+  width: 3rem;
+}
+
+.table thead th {
+  font-size: large;
+}
+
+#cartView{
+  margin-top: 10rem;
+}
