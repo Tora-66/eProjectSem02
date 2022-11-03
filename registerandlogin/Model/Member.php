@@ -111,13 +111,17 @@ class Member
         } else {
             $loginPassword = 0;
         }
-        if ($loginPassword == 1) {
+        if (($loginPassword == 1) && ($memberRecord[0]["Status"] == true)) {
             session_start();
             $_SESSION["username"] = $memberRecord[0]["UserName"];
             session_write_close();
             $url = "./home.php";
             header("Location: $url");
-        } else if ($loginPassword == 0) {
+        
+        } else if ($loginPassword == 1 && ($memberRecord[0]["Status"] == false)) {
+            $loginStatus = "Your account is blocked.";
+            return $loginStatus;
+        } else {
             $loginStatus = "Invalid username or password.";
             return $loginStatus;
         }
