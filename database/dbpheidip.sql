@@ -23,6 +23,7 @@ CREATE TABLE `tbUser_Account` (
     `FullName` varchar(100) NOT NULL,
     `Email` varchar(50) NOT NULL,
     `PhoneNumber` varchar(14) NOT NULL,
+    `Status` boolean DEFAULT 1,
     PRIMARY KEY (UserID)
 );
 
