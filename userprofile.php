@@ -20,12 +20,14 @@ $query1 = "SELECT * FROM tbDelivery_Address WHERE userid = '$field[0]'";
 $rs1 = mysqli_query($conn, $query1);
 
 include 'php/htmlHead.php';
-
+include 'php/navigationBar.php';
+include 'php/htmlBody.php';
 ?>
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<link href="css/userprofile.css" type="text/css" rel="stylesheet" />
-<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 container">
+<link href="css/userprofile.css" type="text/css"
+	rel="stylesheet" />
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 container user">   
     <div class="notification">
         <?php
         if (isset($_GET["msgSuccess"])) :
@@ -33,10 +35,10 @@ include 'php/htmlHead.php';
         endif;
         ?>
     </div>
-    <h2>Profile</h2>
+    <h2>User Profile</h2>
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <h3><?= $field[3] ?></h3> <br>
-    <div class="tab">
+    <div class="tab1">
         <button class="tablinks" onclick="openCity(event, 'accountinfo')" id="defaultOpen">Account Information</button>
         <button class="tablinks" onclick="openCity(event, 'purchasehis')">Purchase History</button>
         <button class="tablinks" onclick="openCity(event, 'feedbackhis')">Feedback History</button>
@@ -67,7 +69,7 @@ include 'php/htmlHead.php';
             </tr>
             <tr>
                 <td>
-                    <a href="editprofile.php?code=<?= $field[0] ?>">Edit profile</a>
+                    <a  class="edit" href="editprofile.php?code=<?= $field[0] ?>">Edit profile</a>
                 </td>
             </tr>
         </table>
@@ -100,6 +102,3 @@ include 'php/htmlHead.php';
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 </script>
-<?php
-include 'php/htmlBody.php';
-?>

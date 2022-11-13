@@ -1,6 +1,7 @@
 <?php
 ##1. Connect to databse
 include_once 'php/DBConnect.php';
+session_start();
 
 $pageTitle = "Product Management";
 

@@ -62,6 +62,14 @@ for ($i = 0; $i < count($address); $i++) {
   }
 }
 
+
+$submit = "";
+$count = count($_SESSION["prodID"]);
+if($count == 0) {
+  $submit = "disabled";
+}
+
+
 // Order Submit
 if (isset($_POST["addOrder"])) {
 
@@ -72,7 +80,6 @@ if (isset($_POST["addOrder"])) {
     $rsInsertAddress = mysqli_query($conn, $queryInsertAddress);
   }
 
-  $count = count($_SESSION["prodID"]);
   for ($i = 0; $i < $count; $i++) :
     $prodID = $_SESSION["prodID"][$i];
     $size = $_SESSION["size"][$i];
@@ -242,7 +249,7 @@ include 'php/navigationBar.php';
       </div>
     </div>
     <div class="m-2 me-5 pe-3 text-start">
-      <button type="submit" class="btn btn-danger" name="addOrder" onclick="return confirm('Click OK to confirm your order!')">Submit</button>
+      <button type="submit" class="btn btn-danger <?= $submit; ?>" name="addOrder" onclick="return confirm('Click OK to confirm your order!')">Submit</button>
     </div>
   </form>
 </section>

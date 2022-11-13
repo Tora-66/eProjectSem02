@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
-include_once 'DBConnect.php';
+include_once 'php/DBConnect.php';
+session_start();
+
+$pageTitle = "Add Inventory";
 
 if (!isset($_GET["id"])) {
     header("Location: inventory.php");
@@ -21,23 +24,12 @@ if (isset($_POST["btnAdd"])) {
     header("Location: inventory.php");
 }
 
+include 'php/htmlHead.php';
+include 'php/sidebar.php';
+
 ?>
 
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Add Product</title>
-</head>
-
-<body>
-
-    <div class="container">
+    <div class="container section-margin">
         <form method="post" enctype="multipart/form-data">
             <caption>
                 <h2>Add New Product</h2>
@@ -58,7 +50,7 @@ if (isset($_POST["btnAdd"])) {
                 </tr>
                 <tr>
                     <td>Quantity</td>
-                    <td><input type="number" name="quantity"></td>
+                    <td><input type="number" min="0" step="1" max="1000" name="quantity" pattern="[0-9]{1,}"></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -70,7 +62,5 @@ if (isset($_POST["btnAdd"])) {
 
     <?php
     mysqli_close($conn);
+    include 'php/htmlBody.php';
     ?>
-</body>
-
-</html>

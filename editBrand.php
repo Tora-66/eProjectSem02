@@ -1,5 +1,8 @@
 <?php
 include_once 'php/DBConnect.php';
+session_start();
+
+$pageTitle = "Update Brand";
 
 $code = $_GET["code"];
 $query1 = "SELECT * FROM tbbrand WHERE BrandID = '{$code}'";
@@ -11,7 +14,7 @@ if (isset($_POST["btnSave"])) :
     $name = $_POST["txtName"];
     $desc = $_POST["txtDesc"];
     if (isset($_FILES['txtPath'])) :
-        $folder = "images/brand_";
+        $folder = "img/brand_";
         $fileName = $_FILES["txtPath"]["name"];
         $fileTmp = $_FILES["txtPath"]["tmp_name"];
         $path = $folder . $fileName;

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include_once 'php/DBConnect.php';
+session_start();
 
 $pageTitle = "Add Product";
 
@@ -52,69 +53,120 @@ endif;
 include 'php/htmlHead.php';
 include 'php/sidebar.php';
 ?>
-<section class="border mx-5 text-center" style="margin-top: 8rem;">
-    <div class="container">
-        <form method="post" enctype="multipart/form-data">
-            <caption>
-                <h2>Add New Product</h2>
-            </caption>
-            <div class="text-start my-2">
-                <button type="button" class="btn btn-dark rounded-0">
-                    <a href="product.php" class="text-decoration-none text-white">Back to product list</a>
-                </button>
+<div class="container mx-auto m-5 p-0 w-50">
+    <form method="post" class="p-2 needs-validation" enctype="multipart/form-data" novalidate>
+        <div class="row justify-content-center mb-4">
+            <div class="col-8 text-end input-label my-auto">
+                <h2>New Product information form</h2>
             </div>
-            <table width="100%" class="table table-borderless text-start border px-0">
-                <tr>
-                    <td>Product ID: </td>
-                    <td><input name="txtProId" placeholder="Enter ID: PPxx"></td>
-                </tr>
-                <tr>
-                    <td>Name: </td>
-                    <td><input name="txtName" placeholder="Enter Name"></td>
-                </tr>
-                <tr>
-                    <td>Price : </td>
-                    <td><input name="txtPrice" placeholder="Enter price"></td>
-                </tr>
-                <tr>
-                    <td>thumbnail: </td>
-                    <td><input type="file" name="txtThumbnail"></td>
-                </tr>
-                <tr>
-                    <td>Image: </td>
-                    <td><input type="file" name="txtImage"></td>
-                </tr>
-                <tr>
-                    <td>Brand: </td>
-                    <td><select name="brand" id="brands">
-                            <?php while ($field = mysqli_fetch_array($rs1)) : ?>
-                                <option value="<?= $field[0] ?>"><?= $field[1] ?></option>
-                            <?php endwhile; ?>
-                        </select></td>
-                </tr>
-                <tr>
-                    <td>Type: </td>
-                    <td><select name="type" id="type">
-                            <?php while ($field = mysqli_fetch_array($rs2)) : ?>
+        </div>
+        <table class="table table-borderless">
+            <hr>
+            <!-- <tr>
+                    <td class="col-sm-3">Product ID: </td>
+                    <td colspan="4" class="col-sm-9" ><input name="txtProId" class="form-control" placeholder="Enter ID: PROxx"></td>
+                </tr> -->
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-2 text-end input-label my-auto">
+                            Name*
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-10">
+                        <input name="txtName" placeholder="Enter Product Name" class="rounded-pill form-input form-control" required>
+                        <div class="invalid-feedback">*Required.</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-2 text-end input-label my-auto">
+                            Price*
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-10">
+                        <input name="txtPrice" class="rounded-pill form-input form-control" pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$" required placeholder="Enter price, much greater than 0">
+                        <div class="invalid-feedback">much greater than 0.</div>
+                </td>
+            </tr>
+            <tr class="was-validated">
+                <td>thumbnail: </td>
+                <td colspan="4"><input type="file" name="txtThumbnail" class="form-control"></td>
+            </tr>
+            <tr class="was-validated">
+                <td>Image: </td>
+                <td colspan="4"><input type="file" name="txtImage" class="form-control"></td>
+            </tr>
+            <tr class="was-validated">
+                <td>Brand: </td>
+                <td colspan="4"><select name="brand" id="brands">
+                        <?php while ($field1 = mysqli_fetch_array($rs1)) : ?>
 
-                                <option value="<?= $field[0] ?>"><?= $field[1] ?></option>
+                            <option value="<?= $field1[0] ?>" class="form-control"><?= $field1[1] ?></option>
 
-                            <?php endwhile; ?>
-                        </select></td>
-                </tr>
-                <tr>
-                    <td>description: </td>
-                    <td><textarea name="txtDesc" id="desc" cols="30" rows="10"></textarea></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" name="btnAdd" value="Add New" onclick="return confirm('Ready to add new product ')"></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-</section>
+                        <?php endwhile; ?>
+                    </select></td>
+            </tr>
+            <tr class="was-validated">
+                <td>Type: </td>
+                <td colspan="4"><select name="type" id="type">
+                        <?php while ($field2 = mysqli_fetch_array($rs2)) : ?>
+
+                            <option value="<?= $field2[0] ?>" class="form-control"><?= $field2[1] ?></option>
+
+                        <?php endwhile; ?>
+                    </select></td>
+            </tr>
+            <!-- <tr class="was-validated">
+                    <td>Tags:</td>
+                    <td><input type="checkbox" id="tagMen" name="tagMen" value="Men">Men</td>
+                    <td><input type="checkbox" id="tagWomen" name="tagWomen" value="Women" >Women</td>
+                    <td><input type="checkbox" id="tagCollection" name="tagCollection" value="Collection" >Collection</td>
+                    <td><input type="checkbox" id="tagNew" name="tagNew" value="New">New</td>
+                </tr> -->
+            <tr>
+                <td>description: </td>
+                <td colspan="4"><textarea name="txtDesc" id="desc" cols="30" rows="5" class="form-control"></textarea></td>
+            </tr>
+            <tr>
+                <td> <a href="product.php" class="btn btn-secondary" class="form-control">Back</a></td>
+                <td colspan="4">
+                    <input type="submit" class="btn btn-success" class="form-control" name="btnAdd" value="Add New" onclick="return confirm('Ready to add new product ')">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
 
 <?php
-
+include 'php/htmlBody.php';
 ?>

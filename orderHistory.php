@@ -1,6 +1,6 @@
 <?php
 ##1. Connect to databse
-session_start();
+// session_start();
 include_once 'php/DBConnect.php';
 
 $pageTitle = "Order History";

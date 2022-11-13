@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include_once 'php/DBConnect.php';
 $pageTitle = 'Admin';
 

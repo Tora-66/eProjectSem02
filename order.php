@@ -1,6 +1,7 @@
 <?php
 ##1. Connect to databse
 include_once 'php/DBConnect.php';
+session_start();
 
 $queryMaster = "SELECT * FROM tbOrder_Master;";
 $rsMaster = mysqli_query($conn, $queryMaster);
@@ -50,6 +51,9 @@ for ($i = 0; $i < $countPayment; $i++) {
     $rcPayment = mysqli_fetch_array($rsPayment);
     array_push($payment, $rcPayment);
 }
+
+// Search function
+
 
 
 include 'php/htmlHead.php';
@@ -134,9 +138,9 @@ include 'php/sidebar.php';
                     ?>
                 </td>
                 <td>
-                    <?= $rcMaster[4]?>
+                    <?= $rcMaster[4] ?>
                 </td>
-                
+
             </tr>
         <?php
         endfor;

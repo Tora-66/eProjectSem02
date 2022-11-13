@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 //Lay du lieu
-include_once 'Connect.php';
+include_once 'php/DBConnect.php';
+session_start();
 
 //Lay du lieu tu tbFeedBack
 $tbfeedback = "SELECT * FROM tbfeedback";
@@ -15,8 +14,8 @@ $rsuser = mysqli_query($conn, $tbuser_account);
 $datauser = mysqli_num_rows($rsuser);
 $user = array();
 for ($i = 0; $i < $datauser; $i++) {
-    $rcUser = mysqli_fetch_array($rsuser);
-    array_push($user, $rcUser);
+    $rcUser = mysqli_fetch_array($rsuser);  //mysqli_fetch_array: chuyen thanh array
+    array_push($user, $rcUser);              //array_push: day du lieu vao array
 }
 
 //Lay du lieu tu tbguest
@@ -29,43 +28,33 @@ for ($i = 0; $i < $dataguest; $i++) {
     array_push($user, $rcGuest);
 }
 
-
-
+include 'php/htmlHead.php';
+include 'php/sidebar.php';
 
 ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Views FeedBack</title>
-</head>
-
-<body>
+<div class="container-fluid">
     <div class="container">
         <h2>View FeedBack</h2>
-        <table class="table table-hove table-bordered">
+    </div>
+
+    <table class="table">
+        <thead>
             <tr>
-                <th>FeedBack Id:</th>
-                <th>UserId</th>
-                <th>GuestId</th>
-                <th>Name:</th>
-                <th>PhoneNumber:</th>
-                <th>Email:</th>
-                <th>Comment:</th>
-                <th>Date</th>
+                <th scope="col">FeedBack Id:</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Date</th>
+                <th scope="col">Details</th>
+                <th scope="col">Function</th>
             </tr>
+        </thead>
+        <tbody>
             <?php
             for ($i = 0; $i < $datafeedback; $i++) :
                 $rcfeedback = mysqli_fetch_array($rsfeedback);
             ?>
                 <tr>
                     <td><?= $rcfeedback[0] ?></td>
-                    <td><?= $rcfeedback[1] ?></td>
-                    <td><?= $rcfeedback[2] ?></td>
                     <td>
                         <?php
                         for ($z = 0; $z < count($user); $z++) {
@@ -81,46 +70,20 @@ for ($i = 0; $i < $dataguest; $i++) {
                         };
                         ?>
                     </td>
-
-                    <td>
-                        <?php
-                        for ($z = 0; $z < count($user); $z++) {
-                            if ($rcfeedback[1] == $user[$z][0]) {
-                                echo $user[$z][5];
-                            }
-                        };
-
-                        for ($z = 0; $z < count($guest); $z++) {
-                            if ($rcfeedback[2] == $guest[$z][0]) {
-                                echo $guest[$z][3];
-                            }
-                        };
-                        ?>
                     </td>
-                    
-                    <td>
-                    <?php
-                    for($z = 0; $z < count($user); $z++){
-                        if($rcfeedback[1] == $user[$z][0]){
-                            echo $user[$z][4];
-                        }
-                    };
+                    <td><?= $rcfeedback[3] ?></td>
+                    <td><?= $rcfeedback[4] ?></td>
 
-                    for($z = 0; $z < count($guest); $z++){
-                        if($rcfeedback[2] == $guest[$z][0]){
-                            echo $guestr[$z][2];
-                        }
-                    };
-                    ?>
-                    </td>
-                    <td><?= $rcfeedback[3]?></td>
-                    <td><?= $rcfeedback[4]?></td>
+                    <td><a href="DetailsFeedBack.php?code=<?= $rcfeedback[0] ?>" class="text-primary">View</a></td>
+                    <td><a href="responseFeedBack.php" class="text-warning">Response</a></td>
                 </tr>
             <?php
             endfor;
             ?>
-        </table>
-    </div>
-</body>
+        </tbody>
+    </table>
+</div>
 
-</html>
+<?php
+include 'php/htmlBody.php';
+?>

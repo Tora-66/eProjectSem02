@@ -1,18 +1,20 @@
 <?php
 
-include_once 'DBConnect.php';
+include_once 'php/DBConnect.php';
+session_start();
+
+$pageTitle = "Inventory Management";
 
 $queryInventory = "SELECT * FROM `tbInventory`";
 $rsInventory = mysqli_query($conn, $queryInventory);
 $countInventory = mysqli_num_rows($rsInventory);
 
-
 $queryProduct = "SELECT * FROM `tbProduct`";
 $rsProduct = mysqli_query($conn, $queryProduct);
 $countProduct = mysqli_num_rows($rsProduct);
 
+// ProductID array in Inventory
 $proInven = array();
-// ProID array in Inventory
 for ($i = 0; $i < $countInventory; $i++) :
   $rcInventory = mysqli_fetch_array($rsInventory);
   array_push($proInven, $rcInventory[1]);
@@ -22,7 +24,7 @@ array_unique($proInven);
 for ($x = 0; $x < $countProduct; $x++) :
   $rcProduct = mysqli_fetch_array(($rsProduct));
   if (!in_array($rcProduct[0], $proInven)) {
-    $InvenID = $rcProduct[0] . "38";
+    $InvenID = substr($rcProduct[0], 0, 7) . "38";
     $queryInsert = "INSERT INTO `tbInventory`(InventoryID, ProductID, `Size`, Quantity) VALUES
           ('{$InvenID}', '{$rcProduct[0]}', '38', 0);";
     $executeInsert = mysqli_query($conn, $queryInsert);
@@ -53,14 +55,14 @@ $queryInventory = "SELECT * FROM `tbInventory`";
 $rsInventory = mysqli_query($conn, $queryInventory);
 
 include 'php/htmlHead.php';
-include 'navigationBar.php';
+include 'php/sidebar.php';
 ?>
 <section class="mx-5" style="margin-top: 8rem;">
   <h2>Inventory</h2>
   <table class="table table-hove table-bordered text-center">
     <tr>
       <th>Inventory ID</th>
-      <th>Product</th>
+      <th>Product ID</th>
       <th>Size</th>
       <th>Quantity</th>
       <th colspan="2">Add</th>
