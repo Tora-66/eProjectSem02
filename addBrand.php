@@ -28,15 +28,15 @@ include 'php/sidebar.php';
 ?>
 
 <div class="container mx-auto m-5 p-0 w-50">
-    <form method="post" class="p-2 needs-validation" enctype="multipart/form-data" novalidate>
-        <div class="row justify-content-center mb-4">
-            <div class="col-8 text-end input-label my-auto">
-                <h2>New brand information Form</h2>
+        <form method="post" class="p-2 needs-validation" enctype="multipart/form-data" novalidate >
+            <div class="row justify-content-center mb-4">
+                <div class="col-8 text-center input-label my-auto">
+                    <h2>New brand</h2> 
+                </div>
             </div>
-        </div>
-        <table class="table table-borderless">
-            <hr>
-            <!-- <tr>
+            <table class="table table-borderless" >
+                 <hr>
+                <!-- <tr>
                     <td>Brand ID: </td>
                     <td>
                         <input name="txtBrandId" placeholder="Enter Brand Code" 
@@ -44,51 +44,61 @@ include 'php/sidebar.php';
                         required>
                     </td>
                 </tr> -->
-            <tr>
-                <td>
-                    <div class="row justify-content-center mb-4">
-                        <div class="col-2 text-end input-label my-auto">
-                            Name*
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-4 text-end input-label my-auto">
+                                Name*
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-10">
-                        <input name="txtName" placeholder="Enter Brand Name" class="rounded-pill form-input form-control" required>
-                        <div class="invalid-feedback">*Required.</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                    </td>
+                    <td>
                     <div class="row justify-content-center mb-4">
-                        <div class="col-2 text-end input-label my-auto">
-                            Logo*
+                        <div class="col-10">
+                            <input name="txtName" placeholder="Enter Brand Name" 
+                            class="rounded-pill form-input form-control"
+                            required />
+                        </div></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div  class="col-4 text-end input-label my-auto">
+                                Logo*                            
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-10">
-                        <input type="file" name="txtPath" class="rounded-pill form-input input-file ps-0 form-control" required>
-                        <div class="invalid-feedback">*Required.</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                    </td>
+                    <td>
                     <div class="row justify-content-center mb-4">
-                        <div class="col-2 text-end input-label my-auto">
-                            description
+                        <div class="col-10">
+                        <input type="file" name="txtPath" 
+                            class="rounded-pill form-input input-file ps-0 form-control"
+                            accept=".jpg, .jpeg, .png,. gif"
+                            required />
+                            <div class="invalid-feedback">*Required.</div>
+                            </div></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                    <div class="row justify-content-center mb-4">
+                            <div  class="col-4 text-end input-label my-auto">
+                                description                            
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-8">
-                        <textarea name="txtDesc" class="form-control" id="description" cols="30" rows="10"></textarea>
-                    </div>
-                </td>
-            </tr>
-            <!-- <tr class=" was-validated">
+                    </td>
+                    <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                            <textarea name="txtDesc" class="form-control" id="description" cols="30" rows="10"></textarea>
+                        </div></div>
+                    </td>
+                </tr>
+
+                <!-- <tr class=" was-validated">
                     <td></td>
                     <td>
                         <input class="form-check-input" type="checkbox" id="myCheck"  name="remember" required>
@@ -97,45 +107,50 @@ include 'php/sidebar.php';
                         <div class="invalid-feedback">Please check to add new brand.</div>
                     </td>
                 </tr> -->
-            <tr>
-                <td>
-                    <div class="row justify-content-center mb-4">
-                        <div class="col-2 text-end input-label my-auto">
-                            <a href="brand.php" class="btn btn-warning rounded-pill">Back</a>
+
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-4 text-end input-label my-auto">
+                                <a href="brand.php" class="btn btn-warning rounded-pill">Back</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-10">
-                        <input type="submit" class="btn btn-success rounded-pill d-flex justify-content-center" value="Add New" name="btnAdd" onclick="return confirm('Ready to add new product ')">
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-8">
+                                <input type="submit"  class="btn btn-success rounded-pill d-flex justify-content-center" 
+                                    value="+ Add New" name="btnAdd"
+                                    onclick="return confirm('Ready to add new product ')">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+    </script>
 <?php
 include 'php/htmlBody.php';
 ?>

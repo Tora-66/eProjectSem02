@@ -12,18 +12,44 @@ if (! empty($_POST["login-btn"])) {
 	rel="stylesheet" />
 <link href="registerandlogin/css/user-registration.css" type="text/css"
 	rel="stylesheet" />
+<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 <script src="registerandlogin/vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
+<style>
+.form-label {
+    margin-bottom: 5px;
+    margin-left: 20px;
+    text-align: left;
+}
+.sign-up-container {
+    border: 1px solid;
+    border-color: #9a9a9a;
+    background: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    width: 300px;
+    margin: 50px auto;
+}
+.login-signup {
+    margin: 10px;
+    text-decoration: none;
+    float: left;
+    margin-left: 15px
+}
+</style>
 </HEAD>
 <BODY>
 	<div class="container">
 		<div class="sign-up-container">
-			<div class="login-signup">
-				<a href="user-registration.php">Sign up</a>
+			<div class="login-signup" >
+				<a href="home.php">Homepage</a> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="user-registration.php">Sign up</a>
 			</div>
 			<div class="signup-align">
 				<form name="login" action="" method="post"
 					onsubmit="return loginValidation()">
-					<div class="signup-heading">Login</div>
+					<div class="signup-heading" style="color: #3F4E4F">Login</div>
 				<?php if(!empty($loginResult)){?>
 				<div class="error-msg"><?php echo $loginResult;?></div>
 				<?php }?>
@@ -46,8 +72,10 @@ if (! empty($_POST["login-btn"])) {
 						</div>
 					</div>
 					<div class="row">
-						<input class="btn" type="submit" name="login-btn"
+                                            <div>
+						<input class="btn btn-success rounded-pill" type="submit" name="login-btn"
 							id="login-btn" value="Login">
+                                            </div>
 					</div>
 				</form>
 			</div>

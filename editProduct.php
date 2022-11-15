@@ -22,8 +22,7 @@ $count3 = mysqli_num_rows($rs3);
 //Save
 if (isset($_POST["btnSave"])) :
     #1.Process Image Value
-    $proId = $_POST["txtProId"];
-    $name = $_POST["txtName"];
+    $name = ucwords($_POST["txtName"]);
     $price = $_POST["txtPrice"];
     $brandId = $_POST["brand"];
     $typeId = $_POST["type"];
@@ -76,77 +75,235 @@ mysqli_close($conn);
 include 'php/htmlHead.php';
 include 'php/sidebar.php';
 ?>
-<div class="container">
-    <form method="post" enctype="multipart/form-data">
-        <caption>
-            <h2>Update Product information form</h2>
-        </caption>
-        <a href="product.php">Back to product list</a>
-        <table width="50%" class="table table-borderless">
-            <tr>
-                <td>Product ID: </td>
-                <td><input name="txtProId" value="<?= $data[0] ?>" readonly></td>
-            </tr>
-            <tr>
-                <td>Name: </td>
-                <td><input name="txtName" value="<?= $data[1] ?>"></td>
-            </tr>
-            <tr>
-                <td>Price : </td>
-                <td>$ <input name="txtPrice" value="<?= $data[2] ?>"></td>
-            </tr>
-            <tr>
-                <td>thumbnail: </td>
-                <td><input type="file" name="txtThumbnail" value="<?= $data[3] ?>"></td>
-            </tr>
-            <tr>
-                <td>Image: </td>
-                <td><input type="file" name="txtImage" value="<?= $data[4] ?>"></td>
-            </tr>
-            <tr>
-                <td>Brand: </td>
-                <td><select name="brand" id="brands">
-                        <?php while ($field1 = mysqli_fetch_array($rs2)) :
-                            $selected = "";
-                            if ($data[5] == $field1[0]) :
-                                $selected = 'selected';
-                            endif;
+<div  class="container mx-auto m-5 p-0 w-50">
+        <form method="post" class="p-2 needs-validation" enctype="multipart/form-data" novalidate>
+        <div class="row justify-content-center mb-4">
+                <div class="col-8 text-center input-label my-auto">
+        <h2>Update Product</h2>
+        </div></div>
+       
+            <table class="table table-borderless">
+                <hr>
+                <tr>
+                    <td>
+                    <div class="row justify-content-center mb-4">
+                            <div class="col-2 text-end input-label my-auto">
+                                ID                            
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-10">
+                        <input name="txtProId" value="<?= $data[0]?>" 
+                        class="rounded-pill form-input form-control"
+                        disabled readonly>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-2 text-end input-label my-auto">
+                                Name*
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-10">
+                            <input name="txtName" value="<?= $data[1]?>" 
+                            class="rounded-pill form-input form-control"
+                            required>
+                            <div class="invalid-feedback">*Required.</div>
+                        </div>
+                    </div>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-2 text-end input-label my-auto">
+                                Price*
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                    <div class="row justify-content-center mb-4">
+                            <div class="col-10">     
+                    <input name="txtPrice" type="number" step="any" min="0" max="10000000000"
+                    value="<?= $data[2]?>"
+                    class="rounded-pill form-input form-control" 
+                    oninput="check(this)"
+                    required>
+                    <div class="invalid-feedback">*Price much be greater than 0.</div>
+                                <script>
+                                    function check(input) {
+                                    if (input.value == 0) {
+                                        input.setCustomValidity('The number must not be zero.');
+                                    } else {
+                                        // input is fine -- reset the error message
+                                        input.setCustomValidity('');
+                                    }
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div  class="col-2 text-end input-label my-auto">
+                                thumbnail*
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-10">
+                        <input type="file" name="txtThumbnail" 
+                        class="rounded-pill form-input input-file ps-0 form-control"
+                        value="<?= $data[3]?>" 
+                        accept=".jpg, .jpeg, .png,. gif">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div  class="col-2 text-end input-label my-auto">
+                                Image*
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-10">
+                        <input type="file" name="txtImage" class="rounded-pill form-input input-file ps-0 form-control"
+                        value="<?= $data[4]?>"
+                        accept=".jpg, .jpeg, .png,. gif">
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div  class="col-2 text-end input-label my-auto">
+                                Brand
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-10">
+                        <select name="brand" id="brands" class="form-input form-select rounded-pill">
+                    <?php while($field1 = mysqli_fetch_array($rs2)): 
+                    $selected = "";
+                        if($data[5]==$field1[0]):
+                            $selected = 'selected';
+                        endif;
                         ?>
+                        
+                        <option <?= $selected;?> value="<?= $field1[0]?>"><?= $field1[1]?></option>
 
-                            <option <?= $selected; ?> value="<?= $field1[0] ?>"><?= $field1[1] ?></option>
-
-                        <?php
+                    <?php 
+                        
                         endwhile; ?>
-                    </select></td>
-            </tr>
-            <tr>
-                <td>Type: </td>
-                <td><select name="type" id="type">
-                        <?php while ($field2 = mysqli_fetch_array($rs3)) :
+                    </select>
+                    </div></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div  class="col-2 text-end input-label my-auto">
+                                Type
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-10">
+                        <select name="type" id="type" class="form-input form-select rounded-pill">
+                    <?php while($field2 = mysqli_fetch_array($rs3)):
                         $selected = "";
-                            if ($data[6] == $field2[0]) :
+                            if($data[6]==$field2[0]):
                                 $selected = 'selected';
                             endif;
-                        ?>
+                    ?>
+                        <option <?= $selected;?> value="<?= $field2[0]?>"><?= $field2[1]?></option>
+                        <?php 
+                            endwhile; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
 
-                            <option <?= $selected; ?> value="<?= $field2[0] ?>"><?= $field2[1] ?></option>
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div  class="col-2 text-end input-label my-auto">
+                                description
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                        <textarea name="txtDesc" id="desc" cols="30" rows="10"  class="form-control"><?= $data[7]?></textarea>
+                        </div></div>
+                    </td>
+                </tr>
 
-                        <?php
-                        endwhile; ?>
-                    </select></td>
-            </tr>
-            <tr>
-                <td>description: </td>
-                <td><textarea name="txtDesc" id="desc" cols="30" rows="10"><?= $data[7] ?></textarea></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="btnSave" value="Save" onclick="return confirm('Are you sure to update <?= $data[1] ?>''Are you sure to update <?= $data[1] ?>')"></td>
-            </tr>
-        </table>
-    </form>
-</div>
-
+                <tr>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-2 text-end input-label my-auto">
+                        <a href="product.php" class="btn btn-warning rounded-pill">Back</a>
+                            </div>
+                    </td>
+                    <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-8">
+                        <input type="submit" class="btn btn-success rounded-pill d-flex justify-content-center"
+                        name="btnSave" value="Save" 
+                    onclick="return confirm('Are you sure to update <?= $data[1]?>')">
+                    </div>
+                        </div>
+                </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+(function () {
+    'use strict'
+  
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+    </script>
 <?php
 include 'php/htmlBody.php';
 ?>

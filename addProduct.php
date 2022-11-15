@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include_once 'php/DBConnect.php';
 session_start();
@@ -13,11 +12,15 @@ $query2 = "SELECT * FROM tbtype ";
 $rs2 = mysqli_query($conn, $query2);
 $count2 = mysqli_num_rows($rs2);
 
+$query3 = "SELECT * FROM tbtag";
+$rs3 = mysqli_query($conn, $query3);
+$count3 = mysqli_num_rows($rs3);
+
 //add
 if (isset($_POST["btnAdd"])) :
     #1.Process Image Value
-    $proId = $_POST["txtProId"];
-    $name = $_POST["txtName"];
+    $proId = substr(strtoupper($_POST["txtName"]), 0, 3) . date('YmdHis');
+    $name = ucwords($_POST["txtName"]);
     $price = $_POST["txtPrice"];
     $brandId = $_POST["brand"];
     $typeId = $_POST["type"];
@@ -42,12 +45,19 @@ if (isset($_POST["btnAdd"])) :
     endif;
 
     //SQL
-    $query = "insert into tbproduct(ProductID, ProductName, Price, Thumbnail, Image, BrandID, TypeID, `Desc`) values('{$proId}','{$name}','{$price}','{$thumbnail}','{$image}','{$brandId}','{$typeId}','{$desc}');";
+
+  
+    $query = "  INSERT INTO tbproduct VALUES('{$proId}','{$name}','{$price}','{$thumbnail}','{$image}','{$brandId}','{$typeId}','{$desc}');";
     $rs = mysqli_query($conn, $query);
+
+    $tagID = "New".$proId;
+    $queryTag = "INSERT INTO `tbTag` VALUES('{$tagID}', 'New', '{$proId}', 'new');";
+    $rsTag = mysqli_query($conn, $queryTag);
+
     if (!$rs) :
         die('nothing to save');
     endif;
-    header("location:inventory.php");
+    header("location: inventory.php");
 endif;
 
 include 'php/htmlHead.php';
@@ -56,8 +66,8 @@ include 'php/sidebar.php';
 <div class="container mx-auto m-5 p-0 w-50">
     <form method="post" class="p-2 needs-validation" enctype="multipart/form-data" novalidate>
         <div class="row justify-content-center mb-4">
-            <div class="col-8 text-end input-label my-auto">
-                <h2>New Product information form</h2>
+            <div class="col-8 text-center input-label my-auto">
+                <h2>New Product</h2>
             </div>
         </div>
         <table class="table table-borderless">
@@ -75,12 +85,15 @@ include 'php/sidebar.php';
                     </div>
                 </td>
                 <td>
-                    <div class="col-10">
-                        <input name="txtName" placeholder="Enter Product Name" class="rounded-pill form-input form-control" required>
-                        <div class="invalid-feedback">*Required.</div>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                            <input name="txtName" placeholder="Enter Product Name" class="rounded-pill form-input form-control" required>
+                            <div class="invalid-feedback">*Required.</div>
+                        </div>
                     </div>
                 </td>
             </tr>
+            
             <tr>
                 <td>
                     <div class="row justify-content-center mb-4">
@@ -90,38 +103,111 @@ include 'php/sidebar.php';
                     </div>
                 </td>
                 <td>
-                    <div class="col-10">
-                        <input name="txtPrice" class="rounded-pill form-input form-control" pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$" required placeholder="Enter price, much greater than 0">
-                        <div class="invalid-feedback">much greater than 0.</div>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                        <input name="txtPrice" type="number" step="any" min="0" max="10000000000"
+                                class="rounded-pill form-input form-control" 
+                                placeholder="Enter price, much greater than 0" 
+                                oninput="check(this)"
+                                required>
+                                <div class="invalid-feedback">*Price much be greater than 0.</div>
+                                <script>
+                                    function check(input) {
+                                    if (input.value == 0) {
+                                        input.setCustomValidity('The number must not be zero.');
+                                    } else {
+                                        // input is fine -- reset the error message
+                                        input.setCustomValidity('');
+                                    }
+                                    }
+                                </script>
+                        </div>
+                    </div>
                 </td>
             </tr>
-            <tr class="was-validated">
-                <td>thumbnail: </td>
-                <td colspan="4"><input type="file" name="txtThumbnail" class="form-control"></td>
+
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-2 text-end input-label my-auto">
+                            Thumbnail*
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                            <input type="file" name="txtThumbnail" class="rounded-pill form-input input-file ps-0 form-control" 
+                            accept=".jpg, .jpeg, .png,. gif" required>
+                            <div class="invalid-feedback">*Required.</div>
+                        </div>
+                    </div>
+                </td>
             </tr>
-            <tr class="was-validated">
-                <td>Image: </td>
-                <td colspan="4"><input type="file" name="txtImage" class="form-control"></td>
+
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-2 text-end input-label my-auto">
+                            Image*
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                            <input type="file" name="txtImage" class="rounded-pill form-input input-file ps-0 form-control" 
+                            accept=".jpg, .jpeg, .png,. gif" required>
+                            <div class="invalid-feedback">*Required.</div>
+                        </div>
+                    </div>
+                </td>
             </tr>
-            <tr class="was-validated">
-                <td>Brand: </td>
-                <td colspan="4"><select name="brand" id="brands">
-                        <?php while ($field1 = mysqli_fetch_array($rs1)) : ?>
 
-                            <option value="<?= $field1[0] ?>" class="form-control"><?= $field1[1] ?></option>
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-2 text-end input-label my-auto">
+                            Brand
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                            <select name="brand" id="brands" class="form-input form-select rounded-pill">
+                                <?php while ($field1 = mysqli_fetch_array($rs1)) : ?>
 
-                        <?php endwhile; ?>
-                    </select></td>
+                                    <option value="<?= $field1[0] ?>" class="form-control"><?= $field1[1] ?></option>
+
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                    </div>
+                </td>
             </tr>
-            <tr class="was-validated">
-                <td>Type: </td>
-                <td colspan="4"><select name="type" id="type">
-                        <?php while ($field2 = mysqli_fetch_array($rs2)) : ?>
 
-                            <option value="<?= $field2[0] ?>" class="form-control"><?= $field2[1] ?></option>
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-2 text-end input-label my-auto">
+                            Type
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                            <select name="type" id="type" class="form-input form-select rounded-pill">
+                                <?php while ($field2 = mysqli_fetch_array($rs2)) : ?>
 
-                        <?php endwhile; ?>
-                    </select></td>
+                                    <option value="<?= $field2[0] ?>" class="form-control"><?= $field2[1] ?></option>
+
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <!-- <tr class="was-validated">
                     <td>Tags:</td>
@@ -131,13 +217,36 @@ include 'php/sidebar.php';
                     <td><input type="checkbox" id="tagNew" name="tagNew" value="New">New</td>
                 </tr> -->
             <tr>
-                <td>description: </td>
-                <td colspan="4"><textarea name="txtDesc" id="desc" cols="30" rows="5" class="form-control"></textarea></td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-2 text-end input-label my-auto">
+                            Description
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                    <textarea name="txtDesc" id="desc" cols="30" rows="10" class="form-control"></textarea>
+                    </div></div>
+                </td>
             </tr>
+
             <tr>
-                <td> <a href="product.php" class="btn btn-secondary" class="form-control">Back</a></td>
-                <td colspan="4">
-                    <input type="submit" class="btn btn-success" class="form-control" name="btnAdd" value="Add New" onclick="return confirm('Ready to add new product ')">
+                <td><div class="row justify-content-center mb-4">
+                            <div class="col-2 text-end input-label my-auto">
+                        <a href="product.php" class="btn btn-warning rounded-pill">Back</a>
+                            </div>
+                        </div>
+                    </td>
+                <td>
+                <div class="row justify-content-center mb-4">
+                            <div class="col-8">
+                                <input type="submit"  class="btn btn-success rounded-pill d-flex justify-content-center"
+                                    name="btnAdd" value="+ Add New" 
+                                    onclick="return confirm('Ready to add new product ')">
+                            </div>
+                        </div>
                 </td>
             </tr>
         </table>
@@ -168,5 +277,6 @@ include 'php/sidebar.php';
 </script>
 
 <?php
+mysqli_close($conn);
 include 'php/htmlBody.php';
 ?>

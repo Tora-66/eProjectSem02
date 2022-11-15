@@ -1,70 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-    <?php
+<?php
 
 use PHPMailer\PHPMailer\PHPMailer;
+include 'php/DBConnect.php';
+session_start();
 
-        if(isset($_POST["send"])):
+if (isset($_POST["send"])) :
 
-            require 'PHPMailer/src/Exception.php';
-            require 'PHPMailer/src/PHPMailer.php';
-            require 'PHPMailer/src/SMTP.php';
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/SMTP.php';
 
-            include('./PHPMailer/src/OAuthTokenProvider.php');
+    include('./PHPMailer/src/OAuthTokenProvider.php');
 
-            $mail = new PHPMailer(true);
+    $mail = new PHPMailer(true);
 
-            //Server settings
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->SMTPDebug  = 0;                                       // Xem báo lỗi ở dòng nào nếu == 0 thì k hiện 
-            $mail->Username   = 'grow5project2@gmail.com';                     //SMTP username
-            $mail->Password   = '123456789qatp';                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;  //465                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    //Server settings
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->SMTPDebug  = 0;                                       // Xem báo lỗi ở dòng nào nếu == 0 thì k hiện 
+    $mail->Username   = 'grow5project2@gmail.com';                     //SMTP username
+    $mail->Password   = '123456789qatp';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;  //465                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-            $mail->isHTML(true);  
-            $mail->setFrom('systemtest@gmail.com', 'Mailer');
-            $mail->addAddress($_POST["txtEmail"], 'Joe User'); // Add a recipient
-             
-            $mail->Subject = 'subject lines matter';  //Khai bao chu de email
-            $mail->Body    = 'content'; //Thong tin dược gửi đi
+    $mail->isHTML(true);
+    $mail->setFrom('systemtest@gmail.com', 'Mailer');
+    $mail->addAddress($_POST["txtEmail"], 'Joe User'); // Add a recipient
 
-            if($mail -> send()):
-                // echo 'Massage clound not be send';
-                echo 'Mailer Error:' .$mail -> ErrorInfo;
-            else:
-                echo 'Messsage has been sent ';
-            endif;
-        endif;
-    ?>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Response FeedBack</title>
-</head>
-<body>
-    <h2>ResponseFeedBack :</h2>
-    <a href="ViewFeedBack.php">Back To Page FeedBack</a>
-    <form action="" method="post">
-        <table align="center">
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" name = "txtEmail"></td>
-            </tr>
+    $mail->Subject = 'subject lines matter';  //Khai bao chu de email
+    $mail->Body    = 'content'; //Thong tin dược gửi đi
 
-            <tr>
-                <td>FeedBack: </td>
-                <td><textarea name="content"cols="30" rows="10" id = "content"></textarea></td>
-            </tr>
+    if ($mail->send()) :
+        // echo 'Massage clound not be send';
+        echo 'Mailer Error:' . $mail->ErrorInfo;
+    else :
+        echo 'Messsage has been sent ';
+    endif;
+endif;
 
-            <tr>
-                <td></td>
-                <td><button type="submit" name = "send">Send</button></td>
-            </tr>
-        </table>
-    </form>
-</body>
-</html>
+
+include 'php/htmlHead.php';
+include 'php/sidebar.php';
+?>
+<h2>ResponseFeedBack :</h2>
+<a href="ViewFeedBack.php">Back To Page FeedBack</a>
+<form action="" method="post">
+    <table align="center">
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="txtEmail"></td>
+        </tr>
+
+        <tr>
+            <td>FeedBack: </td>
+            <td><textarea name="content" cols="30" rows="10" id="content"></textarea></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button type="submit" name="send">Send</button></td>
+        </tr>
+    </table>
+</form>
+
+<?php
+include 'php/htmlBody.php';
+mysqli_close($conn);
+?>

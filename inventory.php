@@ -24,7 +24,7 @@ array_unique($proInven);
 for ($x = 0; $x < $countProduct; $x++) :
   $rcProduct = mysqli_fetch_array(($rsProduct));
   if (!in_array($rcProduct[0], $proInven)) {
-    $InvenID = substr($rcProduct[0], 0, 7) . "38";
+    $InvenID = $rcProduct[0] . "38";
     $queryInsert = "INSERT INTO `tbInventory`(InventoryID, ProductID, `Size`, Quantity) VALUES
           ('{$InvenID}', '{$rcProduct[0]}', '38', 0);";
     $executeInsert = mysqli_query($conn, $queryInsert);
@@ -51,35 +51,60 @@ for ($x = 0; $x < $countProduct; $x++) :
   }
 endfor;
 
+function filterTable($query)
+{
+  $connect = mysqli_connect("localhost", "root", "", "dbpheidip");
+  $filter_Result = mysqli_query($connect, $query);
+  return $filter_Result;
+}
+
+
+if (isset($_POST['search'])) {
+  $valueToSearch = $_POST['valueToSearch'];
+  $queryInventory = "SELECT * FROM `tbInventory` WHERE CONCAT(InventoryID, ProductID, Size) LIKE '%" . $valueToSearch . "%'";
+  $search_result = filterTable($queryInventory);
+  $countInventory = mysqli_num_rows($search_result);
+} else {
+  $queryInventory = "SELECT * FROM `tbInventory`";
+  $search_result = filterTable($queryInventory);
+  $count = mysqli_num_rows($search_result);
+}
+
 $queryInventory = "SELECT * FROM `tbInventory`";
 $rsInventory = mysqli_query($conn, $queryInventory);
 
 include 'php/htmlHead.php';
 include 'php/sidebar.php';
 ?>
-<section class="mx-5" style="margin-top: 8rem;">
-  <h2>Inventory</h2>
-  <table class="table table-hove table-bordered text-center">
-    <tr>
-      <th>Inventory ID</th>
-      <th>Product ID</th>
-      <th>Size</th>
-      <th>Quantity</th>
-      <th colspan="2">Add</th>
-    </tr>
-    <?php
-    while ($rcInventory = mysqli_fetch_array($rsInventory)) :
-    ?>
-      <tr>
-        <td><?= $rcInventory[0]; ?></td>
-        <td><?= $rcInventory[1]; ?></td>
-        <td><?= $rcInventory[2]; ?></td>
-        <td><?= $rcInventory[3]; ?></td>
-        <td><a href="addInventory.php?id='<?= $rcInventory[0]; ?>'">Add</a></td>
-      </tr>
-    <?php
-    endwhile;
-    ?>
+<section class="container">
+  <h2 class="border-bottom py-2">Inventory</h2>
+  <form method="post">
+    <div class="d-flex border rounded-pill my-3 w-25">
+        <input type="submit" name="search" class="btn btn-primary px-4 rounded-pill" value="Search">
+      <input class="form-control me-2 border-0 search shadow-none bg-none" name="valueToSearch" type="search" placeholder="Enter value" aria-label="Search" />
+    </div>
+    <table class="table table-hove table-bordered text-center">
+      <thead class="table-dark">
+        <th>Inventory ID</th>
+        <th>Product ID</th>
+        <th>Size</th>
+        <th>Quantity</th>
+        <th colspan="2">Add</th>
+      </thead>
+      <?php
+      while ($rcInventory = mysqli_fetch_array($search_result)) :
+      ?>
+        <tr>
+          <td><?= $rcInventory[0]; ?></td>
+          <td><?= $rcInventory[1]; ?></td>
+          <td><?= $rcInventory[2]; ?></td>
+          <td><?= $rcInventory[3]; ?></td>
+          <td><a class="btn btn-success rounded-pill" href="addInventory.php?id='<?= $rcInventory[0]; ?>'">Add</a></td>
+        </tr>
+      <?php
+      endwhile;
+      ?>
+  </form>
   </table>
 
 </section>

@@ -17,9 +17,17 @@ else :
     $count = mysqli_num_rows($rs);
 endif;
 
+$queryTitle = "SELECT `BrandName` FROM `tbBrand` WHERE `BrandID` = {$_GET['id']}";
+$rsTitle = mysqli_query($conn, $queryTitle);
+$titleName = mysqli_fetch_array($rsTitle);
+
 include 'php/htmlHead.php';
 include 'php/navigationBar.php';
 ?>
+<div class="container title-box d-flex border-bottom">
+    <i class="bi bi-x-diamond-fill title-icon fs-1 me-4"></i>
+    <div class="section-title my-auto ms-2 fs-3"><?= $titleName[0];?></div>
+</div>
 <section class="pt-5 text-center">
     <div class="container">
 
@@ -49,13 +57,17 @@ include 'php/navigationBar.php';
             <?php
                 endwhile;
             endif;
-            mysqli_close($conn);
             ?>
         </div>
     </div>
 </section>
+<div class="container">
+    <hr>
+</div>
 
 <?php
+include 'php/slider.php';
 include 'php/footer.php';
 include 'php/htmlBody.php';
+mysqli_close($conn);
 ?>

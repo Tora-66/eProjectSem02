@@ -32,62 +32,66 @@ include 'php/sidebar.php';
 
 ?>
 
-<section class="mx-5" style="margin-top: 8rem;">
-    <h2>Product List</h2>
-    <div class="container m-0 my-3 p-0">
-        <button class="btn btn-outline-dark"><a href="addProduct.php" class="text-decoration-none text-warning">Add New</a></button>
-    </div>
-    <table class="table table-hove table-bordered">
-        <tr>
-            <th>Product ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Thumbnail</th>
-            <th>Brand</th>
-            <th>Type</th>
-            <th colspan="2">Function</th>
-        </tr>
-        <?php
-        if ($count == 0) :
-            echo '<br>Record not found!';
-        else :
-            for ($i = 0; $i < $count; $i++) :
-                $data1 = mysqli_fetch_array($rs);
-        ?>
+<section>
+    <div class="container">
+        <h2>Product List</h2>
+        <a href="addProduct.php" class="btn btn-success rounded-pill">Add new product</a>
+        <table class="table table-hover table-striped  text-nowrap table-responsive">
+        <hr>
+            <thead class="table-dark">
                 <tr>
-                    <td><?= $data1[0] ?></td>
-                    <td><?= $data1[1] ?></td>
-                    <td> $ <?= $data1[2] ?></td>
-                    <td style="text-align:center"><img src="<?= $data1[3] ?>" alt="Image" width="40" height="30"></td>
-                    <td>
-                        <?php
-                        for ($z = 0; $z < count($brand); $z++) {
-                            if ($data1[5] == $brand[$z][0]) {
-                                echo $brand[$z][1];
-                            }
-                        }
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        for ($z = 0; $z < count($type); $z++) {
-                            if ($data1[6] == $type[$z][0]) {
-                                echo $type[$z][1];
-                            }
-                        }
-                        ?>
-                    </td>
-                    <td><a href="editProduct.php?id=<?= $data1[0] ?>">Update</a></td>
-                    <td><a href="detailsProduct.php?id=<?= $data1[0] ?>">Details</a></td>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Thumbnail</th>
+                    <th>Brand</th>
+                    <th>Type</th>
+                    <th colspan="2" class="text-center">Function</th>
                 </tr>
-        <?php
-            endfor;
-        endif;
+            </thead>
+            <tbody>
+                <?php
+                if ($count == 0) :
+                    echo '<br>Record not found!';
+                else :
+                    while ($data1 = mysqli_fetch_array($rs)) :
+                ?>
+                        <tr>
+                            <td><?= $data1[0] ?></td>
+                            <td><?= $data1[1] ?></td>
+                            <td> $ <?= $data1[2] ?></td>
+                            <td class="w-auto"><img src="<?= $data1[3] ?>" alt="" width="100rem" height="100rem"></td>
+                            <td>
+                                <?php
+                                for ($z = 0; $z < count($brand); $z++) {
+                                    if ($data1[5] == $brand[$z][0]) {
+                                        echo $brand[$z][1];
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                for ($z = 0; $z < count($type); $z++) {
+                                    if ($data1[6] == $type[$z][0]) {
+                                        echo $type[$z][1];
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td class="text-center"><a href="editProduct.php?id=<?= $data1[0] ?>" class="btn btn-outline-info rounded-pill m-0">Update</a></td>
+                            <td class="text-center"><a href="detailsProduct.php?id=<?= $data1[0] ?>" class="btn btn-warning rounded-pill m-0">Details</a></td>
+                        </tr>
+                <?php
+                    endwhile;
+                endif;
+                mysqli_close($conn);
+                ?>
+            </tbody>
 
-        ?>
-    </table>
+        </table>
+    </div>
 </section>
 <?php
-mysqli_close($conn);
 include 'php/htmlBody.php';
 ?>

@@ -36,8 +36,7 @@ include 'php/sidebar.php';
             <td>Title:</td>
             <td>
                 <form class="form-floating">
-                    <input type="text" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Input Image" name="txttitle">
-                    <label for="floatingInputInvalid">Name Image</label>
+                    <input type="text" class="form-control is-invalid" id="floatingInputInvalid" placeholder="" name="txttitle">
                 </form>
             </td>
         </tr>
@@ -52,7 +51,6 @@ include 'php/sidebar.php';
             <td>
                 <div class="form-floating">
                     <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="txtDesc" rows="10" cols="30"></textarea>
-                    <label for="floatingInputInvalid">Notification</label>
                 </div>
             </td>
         </tr>

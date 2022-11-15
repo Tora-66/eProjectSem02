@@ -12,8 +12,58 @@ if (! empty($_POST["signup-btn"])) {
 	rel="stylesheet"/>
 <link href="registerandlogin/css/user-registration.css" type="text/css"
 	rel="stylesheet"/>
+<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 <script src="registerandlogin/vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
 </HEAD>
+<style>
+.sign-up-container {
+    border: 1px solid;
+    border-color: #9a9a9a;
+    background: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    width: 700px;
+    margin: 50px auto;
+}
+.form-label {
+    margin-bottom: 5px;
+    margin-left: 20px;
+    text-align: left;
+}
+.sub-text{
+    text-align: justify; 
+    font-size: 13px; 
+    margin:5px 50px 0 40px; 
+    opacity: 0.6
+}
+.signup-heading {
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 60px;
+    text-align: center;
+    color: #3F4E4F
+    }
+input:focus{
+        background-color: #DCD7C9
+    }
+@media all and (max-width: 780px) {
+	.container {
+		width: auto;
+	}
+        .sign-up-container{
+            width: 600
+        }
+}
+@media all and (max-width: 575px) {
+        .sign-up-container{
+            width: auto
+        }
+}
+
+</style>
 <BODY>
 	<div class="container">
 		<div class="sign-up-container">
@@ -41,39 +91,17 @@ if (! empty($_POST["signup-btn"])) {
 				<?php
     }
     ?>
+                    
 				<div class="error-msg" id="error-msg"></div>
 					<div class="row">
-						<div class="inline-block">
+						<div class="inline-block col-sm-6">
 							<div class="form-label">
 								<strong>Username</strong><span class="required error" id="username-info"></span>
 							</div>
 							<input class="input-box-330" type="text" name="username"
                                                                id="username" pattern="[A-Za-z0-9]{6,20}" placeholder="At least 6 to 20 letters or digits">
 						</div>
-					</div>
-					<div class="row">
-						<div class="inline-block">
-							<div class="form-label">
-								<strong>Password</strong><span class="required error" id="signup-password-info"></span>
-							</div>
-							<input class="input-box-330" type="password"
-                                                               name="signup-password" id="signup-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-                                                               placeholder="At least 6 or more characters">
-                                                </div>
-                                                <div class="sub-text">Must contain at least one uppercase, one lowercase letter and one number.</div>
-					</div>
-					<div class="row">
-						<div class="inline-block">
-							<div class="form-label">
-								<strong>Confirm Password</strong><span class="required error"
-									id="confirm-password-info"></span>
-							</div>
-							<input class="input-box-330" type="password"
-								name="confirm-password" id="confirm-password">
-						</div>
-					</div>
-                                        <div class="row">
-						<div class="inline-block">
+                                                <div class="inline-block col-sm-6">
 							<div class="form-label">
 								<strong>Full Name</strong><span class="required error" id="fullname-info"></span>
 							</div>
@@ -81,18 +109,34 @@ if (! empty($_POST["signup-btn"])) {
                                                                placeholder="At least 3 or more letters">
 						</div>
 					</div>
-                                        <div class="row">
-						<div class="inline-block">
+					<div class="row">
+						<div class="inline-block col-sm-6">
 							<div class="form-label">
-								<strong>Email</strong><span class="required error" id="email-info"></span>
+								<strong>Password</strong><span class="required error" id="signup-password-info"></span>
 							</div>
-							<input class="input-box-330" type="email" name="email" id="email"
-                                                        placeholder="Ex: you@yourdomain.com">
-                                                        
-						</div>
+							<input class="input-box-330" type="password"
+                                                               name="signup-password" id="signup-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                                               placeholder="At least 6 or more characters">
+                                                        <div class="sub-text">Must contain at least one uppercase, one lowercase letter and one number.</div>
+                                                </div>
+                                                <div class="inline-block col-sm-6">
+							<div class="form-label">
+								<strong>Address</strong><span class="required error" id="address-info"></span>
+							</div>
+							<input class="input-box-330" type="text" name="address" id="address" pattern="{3,}"
+                                                               placeholder="At least 3 or more letters">
+						</div>                                                
 					</div>
-                                        <div class="row">
-						<div class="inline-block">
+					<div class="row">
+						<div class="inline-block col-sm-6">
+							<div class="form-label">
+								<strong>Confirm Password</strong><span class="required error"
+									id="confirm-password-info"></span>
+							</div>
+							<input class="input-box-330" type="password"
+								name="confirm-password" id="confirm-password">
+						</div>
+                                                <div class="inline-block col-sm-6">
 							<div class="form-label">
 								<strong>Phone Number</strong><span class="required error" id="phonenum-info"></span>
 							</div>
@@ -101,17 +145,20 @@ if (! empty($_POST["signup-btn"])) {
 						</div>
 					</div>
                                         <div class="row">
-						<div class="inline-block">
+                                                <div class="inline-block col-sm-6">
 							<div class="form-label">
-								<strong>Address</strong><span class="required error" id="address-info"></span>
+								<strong>Email</strong><span class="required error" id="email-info"></span>
 							</div>
-							<input class="input-box-330" type="text" name="address" id="address" pattern="{3,}"
-                                                               placeholder="At least 3 or more letters">
-						</div>
-					</div>
-					<div class="row">
-						<input class="btn" type="submit" name="signup-btn"
-							id="signup-btn" value="Create new account">
+							<input class="input-box-330" type="email" name="email" id="email"
+                                                        placeholder="Ex: you@yourdomain.com">
+                                                        
+						</div>						
+                                                <div class="inline-block col-sm-6">
+                                                    <div style=" margin-top: 23px"> 
+                                                    <input class="btn btn-success rounded-pill" type="submit" name="signup-btn"
+                                                            id="signup-btn" value="Create new account">
+                                                    </div>
+                                                </div>
 					</div>
 				</form>
 			</div>

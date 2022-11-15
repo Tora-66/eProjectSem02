@@ -75,6 +75,9 @@ if (isset($_SESSION["username"])) {
             <a class="nav-link hover-underline-animation" href="feedbackUser.php" <?= $showProfile ?>>Contact</a>
             <a class="nav-link hover-underline-animation" href="feedbackGuest.php" <?= $showLogin ?>>Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link hover-underline-animation" href="UserNews.php">Information</a>
+          </li>
         </ul>
 
         <ul class="navbar-nav ms-3">

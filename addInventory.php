@@ -18,7 +18,8 @@ $rcInventory = mysqli_fetch_array($rsInventory);
 if (isset($_POST["btnAdd"])) {
     $quantity = $_POST["quantity"];
 
-    $queryAdd = "UPDATE `tbInventory` SET `Quantity` = `Quantity` + {$quantity} WHERE InventoryID = {$id};";
+   
+    $queryAdd = "UPDATE `tbInventory` SET `Quantity` = `Quantity` + {$quantity} WHERE `InventoryID` = {$id};";
     $rsAdd = mysqli_query($conn, $queryAdd);
 
     header("Location: inventory.php");
@@ -32,9 +33,9 @@ include 'php/sidebar.php';
     <div class="container section-margin">
         <form method="post" enctype="multipart/form-data">
             <caption>
-                <h2>Add New Product</h2>
+                <h2>Add Quantity</h2>
             </caption>
-            <a href="product.php">Back to product list</a>
+            <a href="inventory.php">Back to product list</a>
             <table width="50%" class="table table-borderless">
                 <tr>
                     <td>Inventory ID:</td>

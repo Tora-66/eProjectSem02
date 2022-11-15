@@ -29,55 +29,50 @@ endif;
 include 'php/htmlHead.php';
 include 'php/navigationBar.php';
 ?>
-
-<section class="container section-margin">
+<style>
+    body {
+        background-image: url('img/contact-background.jpg');
+    }
+</style>
+<section class="container my-5">
     <form method="post" enctype="multipart/form-data">
-        <h2>Input FeedBack</h2>
-        <table class="table table-hove table-bordered">
+        <h2 class="text-white text-center">Contact Us</h2>
+        <table class="table table-hove table-bordered bg-white w-50 mx-auto">
             <tr>
-                <td>Name:</td>
                 <td>
                     <div class="form-floating">
-                        <input type="text" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Input Name" name="txtName">
+                        <input type="text" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Input Name" name="txtName" maxlength="25" required>
                         <label for="floatingInputInvalid">User Name</label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>Mail:</td>
                 <td>
                     <div class="form-floating">
-                        <input type="email" class="form-control is-invalid" id="floatingInputInvalid" placeholder="name@example.com" name="txtEmail">
+                        <input type="email" class="form-control is-invalid" id="floatingInputInvalid" placeholder="name@example.com" name="txtEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         <label for="floatingInputInvalid">Email</label>
                     </div>
                 </td>
             </tr>
-
             <tr>
-                <td>Phone:</td>
                 <td>
                     <div class="form-floating">
-                        <input type="tel" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Input Phone" name="txtPhone">
+                        <input type="tel" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Input Phone" name="txtPhone" pattern="([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b" required>
                         <label for="floatingInputInvalid">Phone Number</label>
                     </div>
                 </td>
             </tr>
-
             <tr>
-                <td>FeedBack:</td>
                 <td>
                     <div class="form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="txtContent" rows="10" cols="30"></textarea>
-                        <label for="floatingTextarea">Comments</label>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="txtContent" rows="10" cols="30" style="height: 10rem;"maxlength="1000" required></textarea>
+                        <label for="floatingTextarea">Leave your feedback here</label>
                     </div>
                 </td>
             </tr>
-
             <tr>
-                <td></td>
-                <td> <input type="submit" name="txtSubmit" value="Send"></td>
+                <td class="text-center"> <input type="submit" name="txtSubmit" value="Send" class="btn btn-warning rounded-pill"></td>
             </tr>
-
         </table>
     </form>
 </section>

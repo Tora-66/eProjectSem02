@@ -11,7 +11,7 @@ $data = mysqli_fetch_array($rs);
 
 #3. Updata data to database
 if (isset($_POST["btnSave"])) :
-    $name = $_POST["txtName"];
+    $name = ucwords($_POST["txtName"]);
     $desc = $_POST["txtDesc"];
     if (isset($_FILES['txtPath'])) :
         $folder = "img/brand_";
@@ -41,36 +41,109 @@ include 'php/htmlHead.php';
 include 'php/sidebar.php';
 ?>
 
-<form method="post" enctype="multipart/form-data">
-    <caption>
-        <h3>Update brand information Form</h3>
-    </caption>
-    <table width="50%" class="table table-borderless">
-        <tr>
-            <td>Brand ID: </td>
-            <td><input name="txtBrandId" value="<?= $data[0] ?>" readonly></td>
-        </tr>
-        <tr>
-            <td>Brand Name</td>
-            <td><input name="txtName" value="<?= $data[1] ?>"></td>
-        </tr>
-        <tr>
-            <td>Logo: </td>
-            <td>
-                <input type="file" name="txtPath" value="<?= $data[2] ?>">
-            </td>
-        </tr>
-        <tr>
-            <td>Brand description: </td>
-            <td><textarea name="txtDesc" id="description" cols="30" rows="5"><?= $data[3] ?></textarea></td>
-        </tr>
-        <tr>
-            <td><a href="brand.php">Back to Brand list</a></td>
-            <td><input type="submit" name="btnSave" value="Save" onclick="return confirm('Are you sure to update <?= $data[1] ?>')"></td>
+<div class="container mx-auto m-5 p-0 w-50">
+    <form method="post" class="p-2 needs-validation" enctype="multipart/form-data" novalidate>
+            <div class="row justify-content-center mb-4">
+                <div class="col-8 text-center input-label my-auto">
+                    <h2> Update <?= $data[1]?></h2>
+                </div>
+            </div>
+        <table class="table table-borderless">
+            <hr>
 
-        </tr>
-    </table>
-</form>
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-4 text-end input-label my-auto">
+                    ID
+                        </div>
+                    </div>
+                 </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                    <input name="txtBrandId" value="<?= $data[0]?>" 
+                    class="rounded-pill form-input form-control" 
+                    disabled readonly>
+                    </div></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-4 text-end input-label my-auto">
+                            Name*
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                    <input name="txtName" value="<?= $data[1]?>"
+                    class="rounded-pill form-input form-control"
+                            required>
+                    <div class="invalid-feedback">*Required.</div>
+                        </div></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                        <div class="row justify-content-center mb-4">
+                            <div  class="col-4 text-end input-label my-auto">
+                                Logo*                            
+                            </div>
+                        </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                    <input type="file" name="txtPath" value="<?= $data[2]?>" 
+                    class="rounded-pill form-input input-file ps-0 form-control"
+                    accept=".jpg, .jpeg, .png,. gif">
+                    <?= $data[2]?></div></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                            <div  class="col-4 text-end input-label my-auto">
+                                description                            
+                            </div>
+                        </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-10">
+                    <textarea name="txtDesc" id="description" class="form-control" 
+                    cols="30" rows="10"><?= $data[3]?></textarea>
+                    </div></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-4 text-end input-label my-auto">
+                                <a href="brand.php"
+                                class="btn btn-warning rounded-pill">Back</a>
+                                </div>
+                        </div>
+                </td>
+                <td>
+                    <div class="row justify-content-center mb-4">
+                            <div class="col-8">
+                    <input type="submit" name="btnSave" value="Save"
+                onclick="return confirm('Are you sure to update <?= $data[1]?>')"
+                class="btn btn-success rounded-pill d-flex justify-content-center">
+                </div></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+
+    
 <?php
 include 'php/htmlBody.php';
 ?>

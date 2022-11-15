@@ -14,15 +14,15 @@ include 'php/sidebar.php';
 <div class="container">
     <table class="table">
 
-        <h2>News Management</h2>
+        <h2 class="border-bottom">News Management</h2>
 
-        <a href="AddNews.php">Add New</a>
+        <a class="btn btn-success rounded-pill" href="AddNews.php">Add New</a>
 
         <thead>
             <tr>
-                <th scope="col">NewsId</th>
+                <th scope="col">News ID</th>
                 <th scope="col">Title</th>
-                <th scope="col">Comment</th>
+                <th scope="col">Content</th>
                 <th scope="col">Image</th>
                 <th scope="col">DateTime</th>
             </tr>
@@ -30,7 +30,7 @@ include 'php/sidebar.php';
         <tbody>
             <?php
             if ($count == 0) :
-                echo 'Record not found!';
+                echo '';
             else :
                 while ($data = mysqli_fetch_array($rs)) :
             ?>

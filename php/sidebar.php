@@ -16,7 +16,7 @@ if(!isset($_SESSION['sessionAdmin'])){
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#"
+        <a class="navbar-brand" href="admin.php"
           ><img src="img/source/Logo.png " alt=""
         /></a>
 

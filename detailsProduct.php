@@ -33,19 +33,20 @@ include 'php/htmlHead.php';
 include 'php/sidebar.php';
 ?>
 
-    <caption>
-        <h2><?= $data[1] ?> Detials</h2>
-    </caption>
-    <table class="table table-hove table-bordered"" width=" 50%">
-
+<div class="container">
+<h2><?= $data[1]?> Detials</h2>
+<br>
+<a href="product.php" class="btn btn-outline-info rounded-pill m-0">Back</a>
+<hr>
+    <table class="table text-nowrap table-responsive">
         <tr>
-            <td rowspan="2"><img src="./<?= $data[4] ?>" alt="Image" width="150px" height="100px"></td>
+            <td rowspan="2"><img src="./<?= $data[4]?>" alt="Image"width="250px" height="200px"></td>
             <td>Brand ID: </td>
-            <td><?= $data[0] ?> </td>
+            <td><?= $data[0]?> </td>
         </tr>
         <tr>
             <td>name:</td>
-            <td><?= $data[1] ?></td>
+            <td><?= $data[1]?></td>
         </tr>
         <tr>
             <td>Thumbnail</td>
@@ -53,23 +54,23 @@ include 'php/sidebar.php';
             <td>Type</td>
         </tr>
         <tr>
-            <td><img src="./<?= $data[4] ?>" alt="Image" idth="40" height="30"></td>
+            <td><img src="./<?= $data[4]?>" alt="Image" width="40" height="30"></td>
             <td>
                 <?php
-                for ($z = 0; $z < count($brand); $z++) {
-                    if ($data[5] == $brand[$z][0]) {
-                        echo $brand[$z][1];
+                    for ($z = 0; $z < count($brand); $z++) {
+                            if ($data[5] == $brand[$z][0]) {
+                                echo $brand[$z][1];
+                        }
                     }
-                }
                 ?>
             </td>
             <td>
                 <?php
-                for ($z = 0; $z < count($type); $z++) {
-                    if ($data[6] == $type[$z][0]) {
-                        echo $type[$z][1];
+                    for ($z = 0; $z < count($type); $z++) {
+                        if ($data[6] == $type[$z][0]) {
+                            echo $type[$z][1];
+                        }
                     }
-                }
                 ?>
             </td>
         </tr>
@@ -78,15 +79,17 @@ include 'php/sidebar.php';
             <td colspan="3">description:</td>
         </tr>
         <tr>
-            <td colspan="3"><?= $data[7] ?></td>
+            <td colspan="3" ><?=$data[7]?></td>
         </tr>
         <tr>
             <td align="center" colspan="3">
-                <a href="product.php">Back to product list</a>||
-                <a href="editProduct.php?id=<?= $data[0] ?>">Update</a>
+            <a href="editProduct.php?id=<?= $data[0]?>" 
+            class="btn btn-success rounded-pill m-0">Update</a>
             </td>
         </tr>
     </Table>
+
+    </div>
 <?php
 include 'php/htmlBody.php';
 ?>

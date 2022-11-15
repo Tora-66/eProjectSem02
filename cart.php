@@ -23,11 +23,12 @@ for ($i = 0; $i < $count; $i++) {
   array_push($brand, $rc);
 }
 
-
+$hiddenEmpty = "hidden";
 $checkout = "";
 $count = count($_SESSION["prodID"]);
-if($count == 0){
+if ($count == 0) {
   $checkout = "disabled";
+  $hiddenEmpty = "";
 }
 
 function total($price, $quantity)
@@ -47,11 +48,16 @@ for ($i = 0; $i < $countInventory; $i++) {
 include 'php/htmlHead.php';
 include 'php/navigationBar.php';
 ?>
-<section id="cartView" class="section-margin cart">
+
+<div class="container title-box d-flex border-bottom">
+    <i class="bi bi-x-diamond-fill title-icon fs-1 me-4"></i>
+    <div class="section-title ms-2 fs-3">Shopping Cart</div>
+</div>
+<section id="cartView" class="container cart mb-5 mt-4">
   <form method="post">
     <!-- Form table -->
-    <table class="table">
-      <thead>
+    <table class="table text-nowrap table-responsive">
+      <thead class="table-dark">
         <tr class="text-center">
           <th scope="col"></th>
           <th scope="col">Product</th>
@@ -72,13 +78,14 @@ include 'php/navigationBar.php';
         $rcProduct = mysqli_fetch_array($rsProduct);
       ?>
         <tbody>
+          
           <tr class="text-center align-middle">
             <th scope="row"><?= $i + 1; ?></th>
             <td>
               <div class="product-card">
                 <img src="<?= $rcProduct[3]; ?>" alt="" class="product-card-item product-card-img">
-                <div class="product-card-item">
-                  <h5><a href="productDetails.php?id=<?= $prodID; ?>"><?= $rcProduct[1]; ?></a></h5>
+                <div class="product-card-item text-start">
+                  <h5><a class="link-dark" href="productDetails.php?id=<?= $prodID; ?>"><?= $rcProduct[1]; ?></a></h5>
                   <p><?php
                       for ($x = 0; $x < count($brand); $x++) {
                         if ($rcProduct[5] == $brand[$x][0]) {
@@ -87,7 +94,7 @@ include 'php/navigationBar.php';
                       };
 
                       ?></p>
-                  <p><?= $size; ?></p>
+                  <p>Size: <?= $size; ?></p>
                 </div>
               </div>
             </td>
@@ -118,7 +125,7 @@ include 'php/navigationBar.php';
             </td>
             <td>$<span id="price"><?= $rcProduct[2]; ?></span></td>
             <td>
-              <p id="total">$<?= total((float)$rcProduct[2], (int)$quantity); ?></p>
+              <span id="total">$<?= total((float)$rcProduct[2], (int)$quantity); ?></span>
             </td>
             <td><a class="btn btn-outline-warning" href="php/remove.php?index=<?= $i; ?>">Remove</a></td>
           </tr>
@@ -127,13 +134,17 @@ include 'php/navigationBar.php';
       endfor;
       ?>
     </table>
+    
+    <div class="mx-auto text-center" <?= $hiddenEmpty;?>>
+        <img src="img/empty-cart.png" width="50%" height="500px">
+      </div>
     <div class="m-2 me-5 pe-3 text-end">
-      <a class="btn btn-danger <?= $checkout;?>" href="checkout.php">Checkout</a>
+      <a class="btn btn-danger <?= $checkout; ?>" href="checkout.php">Checkout</a>
     </div>
   </form>
 </section>
 
-
 <?php mysqli_close($conn);
+include 'php/footer.php';
 include 'php/htmlBody.php';
 ?>

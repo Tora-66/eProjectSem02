@@ -6,17 +6,23 @@ session_start();
 $pageTitle = "New";
 
 #2.tkae  dât from database whereid
-    $query= "SELECT TagName, p.ProductID, ProductName, Price, Thumbnail         
+$query = "SELECT TagName, p.ProductID, ProductName, Price, Thumbnail         
                     FROM tbproduct p
                         JOIN tbtag tg ON p.ProductID = tg.ProductID 
                     WHERE TagName = 'New';";
-    $rs= mysqli_query($conn, $query);
-    $count = mysqli_num_rows($rs);
+$rs = mysqli_query($conn, $query);
+$count = mysqli_num_rows($rs);
 
 
 include 'php/htmlHead.php';
 include 'php/navigationBar.php';
 ?>
+
+<div class="container title-box d-flex border-bottom">
+    <i class="bi bi-x-diamond-fill title-icon fs-1 me-4"></i>
+    <div class="section-title my-auto ms-2 fs-3">New Products</div>
+</div>
+
 <section class="pt-5 text-center">
     <div class="container">
 
@@ -46,13 +52,17 @@ include 'php/navigationBar.php';
             <?php
                 endwhile;
             endif;
-            mysqli_close($conn);
             ?>
         </div>
     </div>
 </section>
+<div class="container">
+    <hr>
+</div>
 
 <?php
+include 'php/slider.php';
 include 'php/footer.php';
 include 'php/htmlBody.php';
+mysqli_close($conn);
 ?>

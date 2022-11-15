@@ -32,16 +32,15 @@ include 'php/sidebar.php';
     <h2>User List</h2>
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <form action="" method="post">
-        <div class="input-group mb-3">
-            <input type="text" name="valueToSearch" placeholder="Value To Search">
-            <input type="submit" name="search" value="Search" class="btn btn-success btn-xs"><br>
+        <div class="d-flex border rounded-pill my-3 w-25">
+            <input type="submit" name="search" value="Search" class="btn btn-primary px-4 rounded-pill">
+            <input class="form-control me-2 border-0 search shadow-none bg-none" type="text" name="valueToSearch" placeholder="Value To Search">
         </div>
         <?php
         if (!$count) {
             echo '<div class = "alert-warning">Records not found!</div>';
         }
         ?>
-        <hr>
         <table id="userList" class="table table-bordered table-striped">
             <thead>
                 <tr>

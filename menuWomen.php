@@ -26,9 +26,18 @@ else :
 
 endif;
 
+$queryType = "SELECT `TypeName` FROM `tbType` WHERE `TypeID` = {$_GET['id']}";
+$rsType = mysqli_query($conn, $queryType);
+$typeName = mysqli_fetch_array($rsType);
+
 include 'php/htmlHead.php';
 include 'php/navigationBar.php';
 ?>
+<div class="container title-box d-flex border-bottom">
+    <i class="bi bi-x-diamond-fill title-icon fs-1 me-4"></i>
+    <div class="section-title my-auto ms-2 fs-3">Women/ <span class="section-title-child fs-2 ms-2"><?= $typeName[0]; ?></span></div>
+</div>
+
 <section class="pt-5 text-center">
     <div class="container">
 
@@ -58,13 +67,17 @@ include 'php/navigationBar.php';
             <?php
                 endwhile;
             endif;
-            mysqli_close($conn);
             ?>
         </div>
     </div>
 </section>
+<div class="container">
+    <hr>
+</div>
 
 <?php
+include 'php/slider.php';
 include 'php/footer.php';
 include 'php/htmlBody.php';
+mysqli_close($conn);
 ?>
