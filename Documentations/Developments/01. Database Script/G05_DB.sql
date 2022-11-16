@@ -358,3 +358,29 @@ INSERT INTO `tbOrder_Master` VALUES
 ', ''),
 ('M044541', '044154', '1', '3', '2022-11-15 15:17:54
 ', '');
+
+INSERT INTO tbnews(`Title`, `Content` , `Image` , `NewsDate`) VALUES 
+('Giày Nike Air Jordan 1 High University Blue Pk God Factory' ,'Air Jordan 1 Low Royal Yellow là phiên bản mới nhất của dòng Air Jordan 1 huyền thoại.  AJ1 được thiết kế bởi Peter Moore và lần đầu tiên được phát hành với các phiên bản cổ phiếu thấp, trung bình và cao vào năm 1985. Kể từ khi ra mắt, chúng đã là đôi giày thể thao được yêu thích nhất mọi thời đại, mới đây, Jordan Brand đã tung ra phối màu mới cho dòng giày. Thiết kế đơn giản nhưng thanh lịch Các bạn nữ yêu thích sự đơn giản, thanh lịch sẽ không muốn bỏ lỡ đôi AF1 07 Essential White Black này. Mẫu giày được thiết kế bởi Bruce Kilgore vừa được trình làng năm 2021 nhưng đã được nhiều tín đồ sneaker săn lùng trong năm 2022 này. Nổi bật trên nền trắng là logo Swoosh màu đen tạo điểm nhấn nổi bật. Ngoài ra còn có một logo Nike nho nhỏ được thêu chỉ màu vàng trên thân giày và sau gót giày cũng giúp mẫu giày trở nên độc đáo hơn. Ưu điểm của mẫu giày Nike Wmns Air Force 1. 07 Essential White Black Nike Wmns Air Force 1 07 Essential White Black có kiểu dáng ôm chân và bảo vệ đôi chân hiệu quả trong từng cử động. Cách phối đồ với đôi giày Nike Wmns Air Force 1 07 Essential White Black .Nếu theo đuổi phong cách sporty, bạn có thể mix and match mẫu giày này với quần jeans rách hay joggers. Một chiếc chân váy chữ A ngắn trên đầu gối cũng là lựa chọn khá hợp lý. ' ,'img/carousel-1.jpg' , '16/11/2022 07:08:09'),
+
+('Mẫu Giày Nike Mới Nhất Wmns Dunk Low Disrupt 2 Malachite' ,'Thiết kế trẻ trung, năng động Mặc dù mới ra mắt từ ngày 2-2-2022 tuy nhiên mẫu giày Nike 2022 như Dunk Low Disrupt 2 Malachite này đã ngay lập tức “đốn tim” nhiều tín đồ nữ của sneaker. Giày có phần thân trên màu trắng phủ da lộn xanh lá cây, kết hợp với logo University Swoosh được thêu chỉ xanh nổi bật.
+
+Ưu điểm của mẫu giày Nike Wmns Dunk Low Disrupt 2 Malachite
+
+Đế giữa của các mẫu giày Nike Dunk Low Disrupt 2 được làm mỏng đi và đế ngoài làm từ chất liệu cao su Nike Grind. Đây là một phần trong ý tưởng “Move-To-Zero” của Nike.
+
+Cách phối đồ với đôi giày Nike Wmns Dunk Low Disrupt 2 Malachite
+
+Thiết kế của giày Nike mẫu mới Dunk Low Disrupt 2 sẽ kết thân vô cùng hoàn hảo với quần culottes hay một chiếc đầm suông đơn giản.' ,
+'img/arun-krishnavajjala-Ao1AP2UvVnE-unsplash.jpg' , '2022-11-15 15:17:54'),
+
+('Mẫu Giày Nike Nam Đẹp Blazer Mid 77 Vintage White Black', 'Thiết kế basic mang hơi hướng cổ điển
+
+Mặc dù đã được giới thiệu từ năm 2019 nhưng đến nay Blazer Mid 77 Vintage White Black vẫn là một trong những mẫu giày Nike đẹp nhất. Đôi giày được Bill Bowerman thiết kế với phối màu đen trắng basic và kiểu cổ mid mang hơi hướng cổ điển.
+
+Ưu điểm của mẫu giày Nike Blazer Mid 77 Vintage White Black
+
+Mẫu Blazer Mid này là sự kết hợp của các chi tiết da trơn và da lộn. Logo Swoosh “nổi bần bật” giữa tone màu chủ đạo trắng tinh khôi. Các lỗ thoát khí nhỏ bên thân giày cùng phần đệm Air giúp cho đôi chân của người dùng luôn có được cảm giác thoải mái nhất.
+
+Cách phối đồ với đôi giày Nike Blazer Mid 77 Vintage White Black
+
+Nếu chưa biết chọn đôi giày nào để dạo phố, đi làm hay hẹn hò thì các mẫu giày Nike Blazer Mid 77 Vintage White Black chính là mẫu sneaker mà bạn đang tìm kiếm. Chỉ cần một chiếc quần jeans và sơ mi đơn giản phối với mẫu giày basic này cũng đủ để các bạn nam nổi bật giữa đám đông rồi.' ,'img/carousel-2.jpg' ,'2022-11-15 15:17:54');
