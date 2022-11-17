@@ -73,6 +73,7 @@ if(isset($_SESSION["username"])){
         <div class="col-6 text-end text-footer">Follow Us: <i class="bi bi-twitter"></i> <i class="bi bi-facebook"></i>
           <i class="bi bi-youtube"></i>
           <i class="bi bi-instagram"></i>
+          <a href="admin.php"><button type="button" class="btn bg-none borderless">-</button></a>
         </div>
       </div>
     </div>
