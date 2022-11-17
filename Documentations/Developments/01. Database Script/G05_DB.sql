@@ -359,7 +359,7 @@ INSERT INTO `tbOrder_Master` VALUES
 ('M044541', '044154', '1', '3', '2022-11-15 15:17:54
 ', '');
 
-INSERT INTO tbnews(`Title`, `Content` , `Image` , `NewsDate`) VALUES 
+INSERT INTO `tbnews`(`Title`, `Content` , `Image` , `NewsDate`) VALUES 
 ('Giày Nike Air Jordan 1 High University Blue Pk God Factory' ,'Air Jordan 1 Low Royal Yellow là phiên bản mới nhất của dòng Air Jordan 1 huyền thoại.  AJ1 được thiết kế bởi Peter Moore và lần đầu tiên được phát hành với các phiên bản cổ phiếu thấp, trung bình và cao vào năm 1985. Kể từ khi ra mắt, chúng đã là đôi giày thể thao được yêu thích nhất mọi thời đại, mới đây, Jordan Brand đã tung ra phối màu mới cho dòng giày. Thiết kế đơn giản nhưng thanh lịch Các bạn nữ yêu thích sự đơn giản, thanh lịch sẽ không muốn bỏ lỡ đôi AF1 07 Essential White Black này. Mẫu giày được thiết kế bởi Bruce Kilgore vừa được trình làng năm 2021 nhưng đã được nhiều tín đồ sneaker săn lùng trong năm 2022 này. Nổi bật trên nền trắng là logo Swoosh màu đen tạo điểm nhấn nổi bật. Ngoài ra còn có một logo Nike nho nhỏ được thêu chỉ màu vàng trên thân giày và sau gót giày cũng giúp mẫu giày trở nên độc đáo hơn. Ưu điểm của mẫu giày Nike Wmns Air Force 1. 07 Essential White Black Nike Wmns Air Force 1 07 Essential White Black có kiểu dáng ôm chân và bảo vệ đôi chân hiệu quả trong từng cử động. Cách phối đồ với đôi giày Nike Wmns Air Force 1 07 Essential White Black .Nếu theo đuổi phong cách sporty, bạn có thể mix and match mẫu giày này với quần jeans rách hay joggers. Một chiếc chân váy chữ A ngắn trên đầu gối cũng là lựa chọn khá hợp lý. ' ,'img/carousel-1.jpg' , '16/11/2022 07:08:09'),
 
 ('Mẫu Giày Nike Mới Nhất Wmns Dunk Low Disrupt 2 Malachite' ,'Thiết kế trẻ trung, năng động Mặc dù mới ra mắt từ ngày 2-2-2022 tuy nhiên mẫu giày Nike 2022 như Dunk Low Disrupt 2 Malachite này đã ngay lập tức “đốn tim” nhiều tín đồ nữ của sneaker. Giày có phần thân trên màu trắng phủ da lộn xanh lá cây, kết hợp với logo University Swoosh được thêu chỉ xanh nổi bật.
@@ -384,3 +384,14 @@ Mẫu Blazer Mid này là sự kết hợp của các chi tiết da trơn và da
 Cách phối đồ với đôi giày Nike Blazer Mid 77 Vintage White Black
 
 Nếu chưa biết chọn đôi giày nào để dạo phố, đi làm hay hẹn hò thì các mẫu giày Nike Blazer Mid 77 Vintage White Black chính là mẫu sneaker mà bạn đang tìm kiếm. Chỉ cần một chiếc quần jeans và sơ mi đơn giản phối với mẫu giày basic này cũng đủ để các bạn nam nổi bật giữa đám đông rồi.' ,'img/carousel-2.jpg' ,'2022-11-15 15:17:54');
+
+INSERT INTO `tbGuest`(`GuestName`, `email`, `Phone`) VALUES
+('The Guest', 'Themailwhichisntexist@mail.com', '0978767670'),
+('The Messi', 'Messiwhichisntexist@mail.com', '0976787670'),
+('The Ronaninho', 'Ronaninhowhichisntexist@mail.com', '0978760864');
+
+INSERT INTO `tbFeedBack`(`UserID`, `GuestID`, `Content`, `Date`) VALUES 
+(null, 1, 'Feedback is the bridge to effectively connect lesson-learned from the past to the future performance and potential', '2022-11-12 13:19:20'),
+(1, null, 'I saw that you learned how to use pivot tables for your Excel project and it really helped display the data', '2022-11-13 13:19:20'),
+(2, null, 'I am not satisfied with some aspects of the website, in particular, the purchase part I cannot purchase while the products are still available, I hope you will fix this problem sooner.', '2022-11-13 13:19:20'),
+(null, 2, 'I see that your website is very good with many beautiful products and reasonable prices, but I dont know what steps to take to buy products, please help.', '2022-11-12 13:19:20');
