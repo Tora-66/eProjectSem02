@@ -85,7 +85,7 @@ if (isset($_SESSION["username"])) {
             <a href="cart.php" class="btn btn-outline-primary rounded-pill cart-button px-2 py-0"><i class="bi bi-cart-dash fs-3" <?= $showProfile ?>></i></a>
           </li>
           <li class="nav-item mx-2 my-auto">
-            <a href="editprofile.php" class="py-0 px-1 link-dark profile-link" <?= $showProfile ?>><i class="bi bi-person-circle fs-5 me-1"></i>User Profile</a>
+            <a href="editprofile.php" class="py-0 px-1 link-dark profile-link" <?= $showProfile ?>><i class="bi bi-person-circle fs-5 me-1"></i><?= $_SESSION["username"];?></a>
             <a href="login.php" class="btn btn-outline-info rounded-pill" <?= $showLogin ?>>Login</a>
           </li>
           <div class="vr fw-normal my-1 mx-1"></div>
