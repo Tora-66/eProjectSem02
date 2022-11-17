@@ -36,7 +36,7 @@ include 'php/sidebar.php';
             <td>Title:</td>
             <td>
                 <form class="form-floating">
-                    <input type="text" class="form-control is-invalid" id="floatingInputInvalid" placeholder="" name="txttitle">
+                    <input type="text" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Input Title" name="txttitle">
                 </form>
             </td>
         </tr>

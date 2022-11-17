@@ -14,15 +14,15 @@ include 'php/sidebar.php';
 <div class="container">
     <table class="table">
 
-        <h2 class="border-bottom">News Management</h2>
+        <h2>News Management</h2>
 
-        <a class="btn btn-success rounded-pill" href="AddNews.php">Add New</a>
+        <button class="btn btn-outline-dark"><a href="AddNews.php" class="text-decoration-none text-warning">Add New</a></button>
 
         <thead>
             <tr>
-                <th scope="col">News ID</th>
+                <th scope="col">NewsId</th>
                 <th scope="col">Title</th>
-                <th scope="col">Content</th>
+                <th scope="col">Comment</th>
                 <th scope="col">Image</th>
                 <th scope="col">DateTime</th>
             </tr>
@@ -30,7 +30,7 @@ include 'php/sidebar.php';
         <tbody>
             <?php
             if ($count == 0) :
-                echo '';
+                echo 'Record not found!';
             else :
                 while ($data = mysqli_fetch_array($rs)) :
             ?>
@@ -40,8 +40,12 @@ include 'php/sidebar.php';
                         <td><?= $data[2] ?></td>
                         <td style="text-align:center"><img src="<?= $data[3] ?>" alt="Image" width="40" height="30"></td>
                         <td><?= $data[4] ?></td>
-                        <td><a href="UpdateNews.php?id=<?= $data[0] ?>">Update</a></td>
-                        <td><a href="DetailsNews.php?id=<?= $data[0] ?>">Details</a></td>
+
+                        <td><button class="btn btn-outline-dark"><a href="UpdateNews.php?id=<?= $data[0] ?>" class="text-decoration-none text-warning">Update</a></button></td>
+
+                        <td><button class="btn btn-outline-dark"><a href="DetailsNews.php?id=<?= $data[0] ?>" class="text-decoration-none text-warning">AddNew</a></button></td>
+
+                    
                     </tr>
             <?php
                 endwhile;

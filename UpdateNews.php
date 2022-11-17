@@ -23,6 +23,7 @@ if (isset($_POST["txtSubmit"])) :
         move_uploaded_file($fileTmp, $path);
     endif;
 
+    //Update image
     if ($path !== "img/news_") {
         $query2 = "UPDATE `tbnews` SET `Title`='$title', `Content`='$content', `Image`='$path', `NewsDate` = NOW() WHERE `tbnews`.`NewsID` ='{$id}';";
         $rs = mysqli_query($conn, $query2);
@@ -37,7 +38,6 @@ if (isset($_POST["txtSubmit"])) :
     endif;
     header("Location: ViewsNews.php");
 endif;
-mysqli_close($conn);
 
 
 include 'php/htmlHead.php';
@@ -52,7 +52,12 @@ include 'php/sidebar.php';
 
         <tr>
             <td>Content:</td>
-            <td><input name="txtContent" value="<?= $data[2] ?>"></td>
+            <td>
+                <div class="form-floating">
+                    <!-- <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="txtContent" rows="10" cols="30" ></textarea> -->
+                    <input type="text" name="txtContent" value="<?= $data[2]?>" id="floatingTextarea">
+                </input>
+            </td>
         </tr>
 
         <tr>
@@ -74,6 +79,6 @@ include 'php/sidebar.php';
 </form>
 
 <?php
-include 'php/htmlBody.php';
-mysqli_close($conn);
+    include 'php/htmlBody.php';
+        mysqli_close($conn);
 ?>

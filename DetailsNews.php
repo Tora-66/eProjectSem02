@@ -29,7 +29,7 @@ include 'php/sidebar.php';
 
             <tr>
                 <td>Image</td>
-                <td style="text-align:center"><img src="<?= $news[3] ?>" alt="Image" width="100" height="100" readonly></td>
+                <td style="text-align:center"><img src="<?= $news[3] ?>" alt="Image" width="50" height="50" readonly></td>
             </tr>
 
             <tr>

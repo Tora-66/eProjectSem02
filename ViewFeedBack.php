@@ -3,8 +3,6 @@
 include_once 'php/DBConnect.php';
 session_start();
 
-$pageTitle = "Feedback Management";
-
 //Lay du lieu tu tbFeedBack
 $tbfeedback = "SELECT * FROM tbfeedback";
 $rsfeedback = mysqli_query($conn, $tbfeedback);
@@ -32,18 +30,20 @@ for ($i = 0; $i < $dataguest; $i++) {
 
 include 'php/htmlHead.php';
 include 'php/sidebar.php';
-
 ?>
-<section class="container">
+
+
+<div class="container-fluid">
     <div class="container">
-        <h2 class="border-bottom">View FeedBack</h2>
+        <h2>View FeedBack</h2>
     </div>
-    <table class="table text-nowrap table-responsive text-center">
+
+    <table class="table">
         <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col">FeedBack Id:</th>
                 <th scope="col">Customer</th>
-                <th scope="col">Content</th>
+                <th scope="col">Comment</th>
                 <th scope="col">Date</th>
                 <th scope="col">Details</th>
                 <th scope="col">Function</th>
@@ -71,18 +71,27 @@ include 'php/sidebar.php';
                         };
                         ?>
                     </td>
-                    <td class="overflow-hidden text-start"><?= $rcfeedback[3] ?></td>
+                    </td>
+                    <td><?= $rcfeedback[3] ?></td>
                     <td><?= $rcfeedback[4] ?></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning">
+                            <a href="DetailsFeedBack.php?code=<?= $rcfeedback[0] ?>" class="text-primary">View</a>
+                        </button>
+                    </td>
 
-                    <td><a href="DetailsFeedBack.php?code=<?= $rcfeedback[0] ?>" class="text-primary">View</a></td>
-                    <td><a href="responseFeedBack.php" class="text-warning">Response</a></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-info">
+                            <a href="responseFeedBack.php" class="text-warning">Response</a>
+                        </button>
+                    </td>
                 </tr>
             <?php
             endfor;
             ?>
         </tbody>
     </table>
-</section>
+</div>
 
 <?php
 include 'php/htmlBody.php';
