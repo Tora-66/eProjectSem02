@@ -16,32 +16,37 @@ include 'php/sidebar.php';
 ?>
 <section class="container section-margin">
     <form method="post" enctype="multipart/form-data">
+        <h2><?= $news[1]?> Detials</h2>
+        <br>
+        <a href="ViewsNews.php" class="btn btn-outline-info rounded-pill m-0">Back</a>
+        <hr>
+
         <table class="table">
             <tr>
+                <td>Id</td>
+                <td><?= $news[0] ?></td>
+            </tr>
+            <tr>
+
                 <td>Title:</td>
-                <td><input name="txtTitle" value="<?= $news[1] ?>" readonly></td>
+                <td> <?=$news[1] ?> </td>
             </tr>
 
             <tr>
                 <td>Content:</td>
-                <td><input name="txtContent" value="<?= $news[2] ?>" readonly></td>
+                <td><?= $news[2] ?></td>
             </tr>
 
             <tr>
                 <td>Image</td>
-                <td style="text-align:center"><img src="<?= $news[3] ?>" alt="Image" width="50" height="50" readonly></td>
+                <td style="text-align:center"><img src="<?= $news[3] ?>" alt="Image" width="300px" height="300px" readonly></td>
             </tr>
 
             <tr>
                 <td>Date Time:</td>
-                <td><input type="text" name="" value="<?= $news[4] ?>" readonly></td>
+                <td><?= $news[4] ?></td>
             </tr>
 
-            <tr>
-                <td></td>
-                <td><a href="ViewsNews.php" class="btn btn-warning">Back</a></td>
-
-            </tr>
         </table>
     </form>
 </section>
@@ -50,3 +55,4 @@ include 'php/sidebar.php';
 include 'php/htmlBody.php';
 mysqli_close($conn);
 ?>
+

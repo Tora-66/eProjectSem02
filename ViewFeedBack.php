@@ -3,6 +3,8 @@
 include_once 'php/DBConnect.php';
 session_start();
 
+$pageTitle = "Feedback Management";
+
 //Lay du lieu tu tbFeedBack
 $tbfeedback = "SELECT * FROM tbfeedback";
 $rsfeedback = mysqli_query($conn, $tbfeedback);
@@ -30,27 +32,26 @@ for ($i = 0; $i < $dataguest; $i++) {
 
 include 'php/htmlHead.php';
 include 'php/sidebar.php';
+
 ?>
 
-
-<div class="container-fluid">
-    <div class="container">
-        <h2>View FeedBack</h2>
-    </div>
-
+<div class="container">
     <table class="table">
+
+        <h2 class="border-bottom">View FeedBack Management</h2>
+
         <thead>
             <tr>
-                <th scope="col">FeedBack Id:</th>
+                <th scope="col">ID</th>
                 <th scope="col">Customer</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Date</th>
+                <th scope="col">Content</th>
+                <th scope="col">DateTime</th>
                 <th scope="col">Details</th>
                 <th scope="col">Function</th>
             </tr>
         </thead>
         <tbody>
-            <?php
+        <?php
             for ($i = 0; $i < $datafeedback; $i++) :
                 $rcfeedback = mysqli_fetch_array($rsfeedback);
             ?>
@@ -71,20 +72,11 @@ include 'php/sidebar.php';
                         };
                         ?>
                     </td>
-                    </td>
-                    <td><?= $rcfeedback[3] ?></td>
+                    <td class="overflow-hidden text-start"><?= $rcfeedback[3] ?></td>
                     <td><?= $rcfeedback[4] ?></td>
-                    <td>
-                        <button type="button" class="btn btn-outline-warning">
-                            <a href="DetailsFeedBack.php?code=<?= $rcfeedback[0] ?>" class="text-primary">View</a>
-                        </button>
-                    </td>
 
-                    <td>
-                        <button type="button" class="btn btn-outline-info">
-                            <a href="responseFeedBack.php" class="text-warning">Response</a>
-                        </button>
-                    </td>
+                    <td class="text-center"><a href="DetailsFeedBack.php?code=<?= $rcfeedback[0]?>" class="btn btn-outline-info rounded-pill m-0">View</a></td>
+                    <td class="text-center"><a href="responseFeedBack.php" class="btn btn-warning rounded-pill m-0">Response</a></td>
                 </tr>
             <?php
             endfor;

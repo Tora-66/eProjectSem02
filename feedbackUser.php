@@ -35,53 +35,53 @@ include 'php/htmlHead.php';
 include 'php/navigationBar.php';
 
 ?>
-<section class="container section-margin">
-    <form method="post" enctype="multipart/form-data">
-        <h2>Input FeedBack</h2>
-        <table class="table table-hove table-bordered">
+<style>
+    body {
+        background-image: url('img/contact-background.jpg');
+    }
+</style>
+<section class="container my-5 px-5">
+    <form method="post" enctype="multipart/form-data" onsubmit="return signupValidation()">
+        <h2 class="text-center text-white">Contact Us</h2>
+        <table class="table table-hove table-bordered bg-white w-50 mx-auto">
             <tr>
-                <td>Name:</td>
                 <td>
                     <div class="form-floating">
-                        <input type="text" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Phone Number" name="txtName" value="<?= $data[1] ?>" readonly>
+                        <input type="text" class="form-control" id="floatingInputInvalid" placeholder="Phone Number" name="txtName" value="<?= $data[1] ?>" readonly disabled>
                         <label for="floatingInputInvalid">User Name</label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>Phone:</td>
+
                 <td>
                     <div class="form-floating">
-                        <input type="tel" class="form-control is-invalid" id="floatingInputInvalid" placeholder="Phone" name="txtPhone" value="<?= $data[5] ?>" readonly>
+                        <input type="tel" class="form-control" id="floatingInputInvalid" placeholder="Phone" name="txtPhone" value="<?= $data[5] ?>" readonly disabled>
                         <label for="floatingInputInvalid">Phone Number</label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>Mail:</td>
                 <td>
                     <div class="form-floating">
-                        <input type="email" class="form-control is-invalid" id="floatingInputInvalid" placeholder="name@example.com" name="txtEmail" value="<?= $data[4] ?>" readonly>
+                        <input type="email" class="form-control" id="floatingInputInvalid" placeholder="name@example.com" name="txtEmail" value="<?= $data[4] ?>" readonly disabled>
                         <label for="floatingInputInvalid">Email</label>
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td>FeedBack:</td>
+            
                 <td>
                     <div class="form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="txtContent" rows="10" cols="30" maxlength="1000" required ></textarea>
-                        <label for="floatingTextarea">Comments</label>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingInputInvalid3" name="txtContent" rows="40" cols="20" style="height: 10rem;" maxlength="1000"></textarea>
+                        <label for="floatingTextarea">Leave your feedback here</label>
                     </div>
                 </td>
             </tr>
-
             <tr>
-                <td></td>
-                <td> <input type="submit" name="txtSubmit" value="Send"></td>
+                <td class="text-center"> <input type="submit" name="txtSubmit" value="Send" class="btn btn-warning rounded-pill"></td>
             </tr>
-
         </table>
     </form>
 </section>
@@ -90,3 +90,21 @@ include 'php/navigationBar.php';
 include 'php/footer.php';
 include 'php/htmlBody.php';
 ?>
+
+<!--  -->
+<script>
+    function signupValidation() {
+	    var valid = true;
+        
+	$("#floatingInputInvalid3").removeClass("is-invalid");
+
+	var fullname = $ ("#floatingInputInvalid3").val();
+
+    if (fullname.trim() == "") {
+		$("#floatingInputInvalid3").addClass("is-invalid");
+		valid = false;
+	}
+
+	return valid;
+    }
+</script>
